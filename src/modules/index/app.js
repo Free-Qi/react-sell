@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import '../../assets/styles/App.styl'
+
+import Footer from '../../components/Footer/Footer'
 import Login from '../../components/login/login'
 import Nav from '../../components/web-nav/nav'
 
@@ -36,6 +38,7 @@ class App extends Component {
       <div>
         <Nav />
         <Login />
+        <Footer />
       </div>
     )
   }
