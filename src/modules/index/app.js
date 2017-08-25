@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react'
 import '../../assets/styles/App.styl'
+import Footer from '../../components/Footer/Footer'
 
 class App extends Component {
   constructor (props) {
@@ -35,9 +36,10 @@ class App extends Component {
     })
     return (
       <div>
-        <h1>App</h1>
+        <h1>这里是首页</h1>
         <a href='about.html'>关于我们</a>
         {dataArr}
+        <Footer />
       </div>
     )
   }
