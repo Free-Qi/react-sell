@@ -2,9 +2,8 @@ import React, {Component} from 'react'
 import '../../assets/styles/App.styl'
 
 import Footer from '../../components/Footer/Footer'
-// import Login from '../../components/login/login'
+import Login from '../../components/login/login'
 import Nav from '../../components/web-nav/nav'
-
 class App extends Component {
   // constructor (props) {
   //   super(props)
@@ -27,8 +26,7 @@ class App extends Component {
   //       })
   //     })
   // }
-
-  render () {
+  render() {
     // const dataArr = this.state.data.map(function (item, index) {
     //   return (
     //     <p key={index.toString()}>{item['name']}</p>
@@ -37,6 +35,7 @@ class App extends Component {
     return (
       <div>
         <Nav />
+        <Login />
         <Footer />
       </div>
     )
