@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react'
 import '../../assets/styles/App.styl'
+import '../../assets/styles/nav.styl'
 import img3down from '../../assets/Allimg/otherImg/倒三角灰色.png'
 import img3up from '../../assets/Allimg/otherImg/正黄色三角.png'
 class Nav extends Component {
@@ -97,6 +98,11 @@ class Nav extends Component {
               </div>
             </div>
           </div>
+          <div id="page-choose">
+            <a href="/"><span id="home">首页</span></a>
+            <a href="film.html"><span id="film">电影</span></a>
+            <span id="cinema">影院</span>
+          </div>
           <div id="nav-right">
             <div id="appdownload" onMouseOver={this.mouseoverapp} onMouseOut={this.mouseoutapp}>
               App下载
@@ -104,6 +110,10 @@ class Nav extends Component {
               <div id="appdownload-2wm" className="bigborder" style={{display: this.state.disapp}}>
                 <img src={require('../../assets/Allimg/otherImg/load2wm.png')} alt="" />
               </div>
+            </div>
+            <div id="nav-loginAndsign">
+              <a href="login.html"><div id="nav-login">登录</div></a>
+              <div id="nav-sign">注册</div>
             </div>
             <div className="clearboth">.</div>
           </div>

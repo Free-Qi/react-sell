@@ -45,13 +45,15 @@ class Mlogin extends Component {
     }
     return (
       <div id='m-login'>
-        <div id='login-right'>
-          <div id='login-right-top'>
-            <span onClick={this.click1}>快捷登录</span>
-            <span className='active' onClick={this.click2}>账号登录</span>
+        <div className="container">
+          <div id='login-right'>
+            <div id='login-right-top'>
+              <span onClick={this.click1}>快捷登录</span>
+              <span className='active' onClick={this.click2}>账号登录</span>
+            </div>
+            <div>{mydiv}</div>
+            <button id='loginbtn'>登录</button>
           </div>
-          <div>{mydiv}</div>
-          <button id='loginbtn'>登录</button>
         </div>
       </div>
     )
