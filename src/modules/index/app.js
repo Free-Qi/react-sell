@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import '../../assets/styles/App.styl'
 
 import Footer from '../../components/Footer/Footer'
-// import Login from '../../components/login/login'
+import Home from '../../components/home/home'
 import Nav from '../../components/web-nav/nav'
 
 class App extends Component {
@@ -37,6 +37,7 @@ class App extends Component {
     return (
       <div>
         <Nav />
+        <Home />
         <Footer />
       </div>
     )
