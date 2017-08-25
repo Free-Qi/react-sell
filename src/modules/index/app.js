@@ -4,27 +4,27 @@ import Login from '../../components/login/login'
 import Nav from '../../components/web-nav/nav'
 
 class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      data: []
-    }
-  }
-
-  componentDidMount () {
-    fetch('api/billboard/home', {
-      method: 'GET'
-    })
-      .then(response => {
-        return response.json()
-      })
-      .then(response => {
-        console.log(response.data)
-        this.setState({
-          data: response.data.billboards
-        })
-      })
-  }
+  // constructor (props) {
+  //   super(props)
+  //   this.state = {
+  //     data: []
+  //   }
+  // }
+  //
+  // componentDidMount () {
+  //   fetch('api/billboard/home', {
+  //     method: 'GET'
+  //   })
+  //     .then(response => {
+  //       return response.json()
+  //     })
+  //     .then(response => {
+  //       console.log(response.data)
+  //       this.setState({
+  //         data: response.data.billboards
+  //       })
+  //     })
+  // }
 
   render () {
     // const dataArr = this.state.data.map(function (item, index) {
