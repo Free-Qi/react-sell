@@ -86,7 +86,7 @@ class Nav extends Component {
     return (
       <div id='web-nav'>
         <div className='container'>
-          <a href=''>
+          <a href='/'>
             <div id='web-logo'>.</div>
           </a>
           <div id='city' onMouseOver={this.mouseover} onMouseOut={this.mouseout}>

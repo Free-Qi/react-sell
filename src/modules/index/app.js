@@ -12,7 +12,6 @@ class App extends Component {
   //     data: []
   //   }
   // }
-  //
   // componentDidMount () {
   //   fetch('api/billboard/login', {
   //     method: 'GET'
