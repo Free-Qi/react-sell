@@ -86,7 +86,7 @@ class Nav extends Component {
     return (
       <div id='web-nav'>
         <div className='container'>
-          <a href=''>
+          <a href='/'>
             <div id='web-logo'>.</div>
           </a>
           <div id='city' onMouseOver={this.mouseover} onMouseOut={this.mouseout}>
@@ -113,7 +113,7 @@ class Nav extends Component {
             </div>
             <div id="nav-loginAndsign">
               <a href="login.html"><div id="nav-login">登录</div></a>
-              <div id="nav-sign">注册</div>
+              <a href="register.html"> <div id="nav-sign">注册</div></a>
             </div>
             <div className="clearboth">.</div>
           </div>

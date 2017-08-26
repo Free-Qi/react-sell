@@ -26,7 +26,7 @@ class App extends Component {
   //       })
   //     })
   // }
-  render() {
+  render () {
     // const dataArr = this.state.data.map(function (item, index) {
     //   return (
     //     <p key={index.toString()}>{item['name']}</p>
