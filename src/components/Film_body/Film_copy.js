@@ -1,73 +1,26 @@
 import React, {Component} from 'react'
 import '../../assets/styles/Film.styl'
+
 class Film extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      data: [],
-      show: 'hot',
-      pagenum: 1
+      data: []
     }
   }
-  // componentDidMount () {
-  //   fetch('api/film?__t=1503653957136&page=1&count=5&sortType=1&type=1', {
-  //     method: 'GET'
-  //   })
-  //     .then(response => {
-  //       return response.json()
-  //     })
-  //     .then(response => {
-  //     //  console.log(response.data)
-  //       this.setState({
-  //         data: response.data.films
-  //       })
-  //     })
-  // }
-  getUrl = (myUrl) => {
-    fetch(myUrl, {
+  componentDidMount () {
+    fetch('api/film?__t=1503653957136&page=1&count=5&sortType=1&type=1', {
       method: 'GET'
     })
       .then(response => {
         return response.json()
       })
       .then(response => {
-        console.log(response.data)
+        //  console.log(response.data)
         this.setState({
           data: response.data.films
         })
       })
-  }
-
-  componentDidMount() {
-    let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=1&type=1'
-    this.getUrl(myUrl)
-    var h2Arr = document.querySelectorAll('.film_header h3 span')
-    if (this.state.show === 'hot') {
-      h2Arr.forEach(function (item, index) {
-        item.className = ''
-      })
-      h2Arr[0].className = 'spanred'
-    }
-    if (this.state.show === 'will') {
-      h2Arr.forEach(function (item, index) {
-        item.className = ''
-      })
-      h2Arr[1].className = 'spanred'
-    }
-  }
-  hotClick = (e) => {
-    var h2Arr = document.querySelectorAll('.film_header h3 span')
-    h2Arr.forEach(function (item, index) {
-      item.className = ''
-    })
-    e.target.className = 'spanred'
-  }
-  willClick = (e) => {
-    var h2Arr = document.querySelectorAll('.film_header h3 span')
-    h2Arr.forEach(function (item, index) {
-      item.className = ''
-    })
-    e.target.className = 'spanred'
   }
   render () {
     const dataArr = this.state.data.map(function (item, index) {
@@ -110,18 +63,18 @@ class Film extends Component {
             影片详情
           </button>
         </li>
-      //  <p key={index.toString()}>{item['name']}</p>
+        //  <p key={index.toString()}>{item['name']}</p>
       )
     })
-   // console.log(this.state.data.films)
+    // console.log(this.state.data.films)
     return (
       <div className='film'>
         <div className='film_left'>
           <div className='film_header'>
             <h3>
-              <span onClick={this.hotClick}>正在热映</span>
+              <span className='film_hot'>正在热映</span>
               /
-              <span onClick={this.willClick}>即将上映</span>
+              <span className='film_coming'>即将上映</span>
             </h3>
             <div className='film_order'>
               <ul>
