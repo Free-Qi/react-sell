@@ -84,16 +84,20 @@ class Moveimg extends Component {
   //   this.timer = setInterval(this.move, 3500)
   // };
   render() {
-    var moveimgArr = this.state.data.map((item, index) => {
+    var moveimgArr = this.state.data.map(function (item, index) {
       return (
         <div key={index} className="movelbt" style={{width: document.documentElement.clientWidth}}>
           <img src={item.imageUrl} alt="" />
         </div>
       )
     })
+    var obj = {
+      left: this.state.left,
+      width: document.documentElement.clientWidth * 5
+    }
     return (
       <div id="lbt">
-        <div id="moveBigimg" style={{left: this.state.left}}>
+        <div id="moveBigimg" style={obj}>
           {moveimgArr}
         </div>
         <div id="lbt-clickall">
