@@ -8,6 +8,7 @@ import SomeCircle from './someCircle'
 import HotAndWill from './hotAndWill'
 import Lbt from './moveimg'
 import PlaceTop from '../placeTop/placeTop'
+import LbtTwo from './moveimgTwo'
 
 class Home extends Component {
   render() {
@@ -17,6 +18,7 @@ class Home extends Component {
         <Lbt />
         <SomeCircle />
         <HotAndWill />
+        <LbtTwo />
       </div>
     )
   }
