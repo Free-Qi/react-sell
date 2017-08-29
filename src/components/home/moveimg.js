@@ -32,7 +32,6 @@ class Moveimg extends Component {
         return response.json()
       })
       .then(response => {
-        console.log(response.data)
         this.setState({
           data: response.data.billboards
         })
@@ -84,7 +83,7 @@ class Moveimg extends Component {
   //   this.timer = setInterval(this.move, 3500)
   // };
   render() {
-    var moveimgArr = this.state.data.map(function (item, index) {
+    var moveimgArr = this.state.data.map((item, index) => {
       return (
         <div key={index} className="movelbt" style={{width: document.documentElement.clientWidth}}>
           <img src={item.imageUrl} alt="" />

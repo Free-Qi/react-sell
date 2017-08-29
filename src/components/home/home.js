@@ -9,9 +9,11 @@ import HotAndWill from './hotAndWill'
 import Lbt from './moveimg'
 import PlaceTop from '../placeTop/placeTop'
 import LbtTwo from './moveimgTwo'
+import HotActive from './hotActive'
+import Comment from './comment'
 
 class Home extends Component {
-  render() {
+  render () {
     return (
       <div id='home-body'>
         <PlaceTop />
@@ -19,6 +21,8 @@ class Home extends Component {
         <SomeCircle />
         <HotAndWill />
         <LbtTwo />
+        <HotActive />
+        <Comment />
       </div>
     )
   }

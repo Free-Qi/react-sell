@@ -37,12 +37,11 @@ class MoveimgTwo extends Component {
     this.timer = setInterval(this.moveimg, 3500)
   }
   render() {
-    var moveimgArr2 = this.state.data.map(function (item, index) {
+    var moveimgArr2 = this.state.data.map((item, index) => {
       return (
         <img src={item.imageUrl} alt="" key={index} />
       )
     })
-    console.log(this.state.left)
     return (
       <div id="moveBigimg2">
         <div className="home-container">

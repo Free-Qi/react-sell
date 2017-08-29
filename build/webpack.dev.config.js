@@ -42,4 +42,3 @@ Object.keys(htmlPaths).forEach(function (key) {
   const plugin = new HTMLWebpackPlugin(config)
   module.exports.plugins.push(plugin)
 })
-console.log(module.exports.plugins)

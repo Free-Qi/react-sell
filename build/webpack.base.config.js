@@ -20,7 +20,6 @@ module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
             ? config.build.assetsPublicPath
             : config.dev.assetsPublicPath
-
   },
   module: {
     rules: [
@@ -47,7 +46,6 @@ module.exports = {
           'stylus-loader'
         ]
       },
-
       {
         test: /\.(png|jpe?g|gif|svg)$/,
                 // loader配合options使用
