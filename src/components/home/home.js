@@ -5,9 +5,9 @@ import React, {Component} from 'react'
 import '../../assets/styles/home.styl'
 
 class Home extends Component {
-  render() {
+  render () {
     return (
-      <div id="home-body">
+      <div id='home-body'>
        .
       </div>
     )

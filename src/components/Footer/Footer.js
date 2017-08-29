@@ -44,10 +44,10 @@ class Footer extends Component {
         </div>
         <div className='Footer_park2'>
           <ul>
-            <li><a href='#'>关于卖座</a> |</li>
-            <li><a href='#'>联系我们</a> |</li>
-            <li><a href='#'>商务合作</a> |</li>
-            <li><a href='#'>合作伙伴</a> |</li>
+            <li><a href='about.html'>关于卖座</a> |</li>
+            <li><a href='contact.html'>联系我们</a> |</li>
+            <li><a href='business.html'>商务合作</a> |</li>
+            <li><a href='teamwork.html'>合作伙伴</a> |</li>
             <li><a href='#'>诚聘英才</a> |</li>
             <li><a href='#'>使用帮助</a> |</li>
             <li><a href='#'>退票服务</a> |</li>

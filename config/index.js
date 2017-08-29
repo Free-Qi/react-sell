@@ -21,6 +21,13 @@ module.exports = {
         pathRewrite: {
           '/api': '/api'
         }
+      },
+      '/captcha': {
+        target: 'http://captcha.maizuo.com/',
+        changeOrigin: true,
+        pathRewrite: {
+          '/captcha': '/captcha'
+        }
       }
     }
 
