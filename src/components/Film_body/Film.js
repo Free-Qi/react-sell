@@ -39,35 +39,33 @@ class Film extends Component {
   }
 
   componentDidMount() {
+   // this.hotClick()
     let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=1&type=1'
     this.getUrl(myUrl)
-    var h2Arr = document.querySelectorAll('.film_header h3 span')
-    if (this.state.show === 'hot') {
-      h2Arr.forEach(function (item, index) {
-        item.className = ''
-      })
-      h2Arr[0].className = 'spanred'
-    }
-    if (this.state.show === 'will') {
-      h2Arr.forEach(function (item, index) {
-        item.className = ''
-      })
-      h2Arr[1].className = 'spanred'
-    }
   }
   hotClick = (e) => {
-    var h2Arr = document.querySelectorAll('.film_header h3 span')
-    h2Arr.forEach(function (item, index) {
+    this.setState({
+      show: 'hot'
+    })
+    var h3Arr = document.querySelectorAll('.film_header h3 span')
+    h3Arr.forEach(function (item, index) {
       item.className = ''
     })
     e.target.className = 'spanred'
+    let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=1&type=1'
+    this.getUrl(myUrl)
   }
   willClick = (e) => {
-    var h2Arr = document.querySelectorAll('.film_header h3 span')
-    h2Arr.forEach(function (item, index) {
+    this.setState({
+      show: 'will'
+    })
+    var h3Arr = document.querySelectorAll('.film_header h3 span')
+    h3Arr.forEach(function (item, index) {
       item.className = ''
     })
     e.target.className = 'spanred'
+    let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=1&type=2'
+    this.getUrl(myUrl)
   }
   render () {
     const dataArr = this.state.data.map(function (item, index) {
