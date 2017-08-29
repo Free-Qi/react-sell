@@ -9,10 +9,10 @@ class App extends Component {
   // constructor (props) {
   //   super(props)
   //   this.state = {
-  //     data: []
+  //     data: [],
+  //     cityInnerhtml: '大连'
   //   }
   // }
-  //
   // componentDidMount () {
   //   fetch('api/billboard/login', {
   //     method: 'GET'

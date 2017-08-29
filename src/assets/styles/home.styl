@@ -3,11 +3,443 @@
   padding 0
   box-sizing border-box
 
+body
+  width 100%
+  height 100%
+
+.clearboth
+  opacity 0.1
+  font-size 0.1px
+  clear both
+
 #home-body
   width 100%
   min-height 1500px
-  border 1px solid black
+  overflow hidden
+
 .home-container
   width 1200px
   height 100%
   margin auto
+  position relative
+
+#lbt
+  width 100%
+  min-width 1300px
+  height 400px
+  overflow hidden
+  position relative
+
+#moveBigimg
+  //width 10000px
+  height 100%
+  position absolute
+  transition all .5s
+  overflow hidden
+
+.movelbt
+  height 100%
+  display inline-block
+
+.movelbt img
+  width 100%
+  height 100%
+
+#lbt-clickall
+  width 400px
+  height 25px
+  position absolute
+  bottom 15px
+  right 50px
+  text-align center
+  line-height 25px
+
+#lbt-clickall > div
+  display inline-block
+  width 20px
+  height 20px
+  border-radius 50%
+  background-color gainsboro
+  opacity 0.25
+  margin-left 30px
+  cursor pointer
+  border 1px solid gray
+
+.lbt-click-blue
+  background-color rgb(45, 142, 162) !important
+
+#somecircle
+  width 3000px
+  height 30px
+  margin-top -10px
+  position absolute
+
+#somecircle div
+  width 30px
+  height 30px
+  margin-left 10px
+  margin-right 10px
+  background-color white
+  border-radius 50%
+  display inline-block
+
+#hotAndWill
+  width 100%
+  height 410px
+  margin-top 25px
+
+#hotAndWill-header
+  width 100%
+  height 80px
+  border-bottom 1px solid rgb(163, 163, 163)
+
+#hotAndWill-header-left
+  width 250px
+  height 80px
+  line-height 80px
+  float left
+
+#hotAndWill-header-left h2
+  display inline-block
+  cursor pointer
+  color rgb(163, 163, 163)
+
+.h2black
+  color black !important
+
+#hotAndWill-header-right
+  padding-right 10px
+  width 300px
+  height 80px
+  float right
+  line-height 80px
+  text-align right
+  font-size 14px
+  color rgb(163, 163, 163)
+
+#hotAndWill-header-right a {
+  color red
+  text-decoration none
+}
+
+#hotAndWill-goleft
+  width 50px
+  height 50px
+  border-radius 50%
+  background-color gainsboro
+  position absolute
+  left -60px
+  top 120px
+  cursor pointer
+
+#hotAndWill-goleft:hover
+  background-color whitesmoke
+
+#hotAndWill-goright:hover
+  background-color whitesmoke
+
+#hotAndWill-goright
+  width 50px
+  height 50px
+  border-radius 50%
+  background-color gainsboro
+  position absolute
+  right -60px
+  top 120px
+  cursor pointer
+
+#hotAndWill-goleft img, #hotAndWill-goright img {
+  width 100%
+  height 100%
+  border-radius 50%
+}
+
+.home-hotfilm-one
+  display inline-block
+  width 200px
+  height 310px
+  margin-top 15px
+
+.home-hotfilm-one-img
+  width 180px
+  height 250px
+  margin auto
+
+.home-hotfilm-one-img img
+  width 100%
+  height 100%
+
+.home-hotfilm-text
+  text-align center
+  width 100%
+  height 30px
+  line-height 30px
+  font-size 12px
+  font-weight bold
+
+.home-hotfilm-name
+  display inline-block
+  margin-right 10px
+
+.home-hotfilm-grade
+  color rgb(250, 80, 45)
+
+#home-hotandwill-all
+  width 100%
+  height 300px
+  margin-top 10px
+
+#home-hotandwill-in
+  width 100%
+  height 100%
+  position relative
+  text-align center
+
+#moveBigimg2
+  width 100%
+  height 150px
+  margin-top 50px
+  margin-bottom 50px
+
+#moveBigimg2-fix
+  width 100%
+  height 100%
+  position relative
+  overflow hidden
+  border 1px solid red
+
+#moveBigimg2-move
+  width 2400px
+  height 100%
+  transition all 0.5s
+  position absolute
+
+#moveBigimg2-move img
+  width 1200px
+  height 100%
+
+#hotActive
+  width 100%
+  height 300px
+  overflow hidden
+  margin-bottom 50px
+
+#hotActive-left
+  width 880px
+  height 300px
+  float left
+  padding 3px
+
+#hotActive-left-header
+  width 100%
+  height 35px
+  border-bottom 2px solid rgb(193, 193, 193)
+  padding-bottom 3px
+
+#hotActive-left-body
+  width 100%
+  height 260px
+  text-align center
+
+#hotActive-left-body a
+  text-decoration none
+  display inline-block
+  width 100%
+  height 100%
+  color rgb(117, 117, 117)
+
+#hotActive-left-body a:hover
+  text-decoration underline
+  color red
+
+.hotActive-left-body-one
+  width 282px
+  height 225px
+  display inline-block
+  margin 10px 4px
+  cursor pointer
+
+.hotActive-left-body-one-img
+  width 280px
+  height 180px
+
+.hotActive-left-body-one-img img
+  width 100%
+  height 100%
+
+.hotActive-left-body-one-text
+  width 280px
+  height 40px
+  background-color rgb(223, 223, 223)
+  text-align center
+  line-height 40px
+  font-size 15px
+  font-weight lighter
+
+#hotActive-right
+  width 282px
+  height 300px
+  float right
+
+  padding 3px
+
+#hotActive-left-header
+  width 100%
+  height 35px
+  border-bottom 2px solid rgb(193, 193, 193)
+  padding-bottom 3px
+
+#hotActive-right-body
+  width 280
+  height 260px
+  text-align center
+  margin-top 10px
+
+#hotActive-right-body a
+  text-decoration none
+  display inline-block
+  width 100%
+  height 100%
+  color rgb(117, 117, 117)
+
+#hotActive-right-body a:hover
+  text-decoration underline
+  color red
+
+#hotActive-right-body-img
+  width 275px
+  height 180px
+
+#hotActive-right-body-img img
+  width 100%
+  height 100%
+
+#hotActive-right-body-text
+  width 280px
+  height 40px
+  background-color rgb(223, 223, 223)
+  text-align center
+  line-height 40px
+  font-size 15px
+  font-weight lighter
+
+#home-comment
+  width 100%
+  height 400px
+  margin-bottom 100px
+
+#comment-left
+  width 880px
+  height 400px
+  padding 3px
+  float left
+
+#comment-left-header
+  width 100%
+  height 35px
+  border-bottom 2px solid rgb(193, 193, 193)
+  padding-bottom 3px
+
+#comment-left-fix
+  width 870px
+  height 355px
+
+  position relative
+  overflow hidden
+
+#comment-left-move
+  width 870px
+  min-height 2400px
+  position absolute
+  transition all 3s
+
+.comment-left-move-one
+  width 860px
+  margin auto
+  min-height 120px
+  padding 10px 10px 10px 10px
+  border-bottom 1px solid rgb(223, 223, 223)
+
+.comment-one-img
+  width 60px
+  height 60px
+  border 1px solid whitesmoke
+  //margin-top 25px
+  vertical-align middle
+  border-radius 50%
+  display inline-block
+
+.comment-one-img img
+  width 100%
+  height 100%
+  border-radius 50%
+  vertical-align middle
+
+.comment-one-text
+  margin-top 15px
+  width 700px
+  margin-left 20px
+  display inline-block
+  min-height 70px
+  font-size 12px
+  padding-left 5px
+  color rgb(163, 163, 163)
+  vertical-align middle
+
+.comment-one-text span
+  margin-right 10px
+
+.comment-one-text p
+  margin-top 5px
+
+.spanred
+  color red
+  font-weight bolder
+
+#comment-right
+  width 282px
+  float right
+  height 400px
+
+#comment-right-header
+  width 100%
+  height 35px
+  border-bottom 2px solid rgb(193, 193, 193)
+  padding-bottom 3px
+
+#comment-right-body
+  width 100%
+  height 350px
+  text-align center
+
+.comment-right-body-one
+  width 100%
+  height 170px
+  border-bottom 1px solid rgb(193, 193, 193)
+  text-align center
+
+.comment-right-body-one-img
+  width 150px
+  height 150px
+  vertical-align middle
+  display inline-block
+
+.comment-right-body-one-img img
+  width 100%
+  height 100%
+
+.comment-right-body-one-text
+  width 120px
+  height 170px
+  display inline-block
+  color rgb(193, 193, 193)
+  text-align center
+  vertical-align middle
+  font-size 12px
+
+.comment-right-body-one-text>div
+  margin-top 50px
+  width 100%
+  height 50px
+
+

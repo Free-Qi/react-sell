@@ -65,7 +65,6 @@ Object.keys(proxyTable).forEach(function (context) {
 })
 
 const static = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory);
-console.log(static);
 app.use(static, express.static('./static'));
 
 app.use(require('connect-history-api-fallback')());

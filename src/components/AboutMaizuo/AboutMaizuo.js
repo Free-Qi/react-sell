@@ -10,15 +10,15 @@ class AboutMaizuo extends Component {
       <div id='maizuo-about'>
         <div id='about-nav-title'>
           <ul id='about-ul'>
-            <li><a href="about.html">关于卖座</a></li>
-            <li><a href="contact.html">联系我们</a></li>
-            <li><a href="business.html">商务合作</a></li>
-            <li><a href="teamwork.html">合作伙伴</a></li>
-            <li><a href="">诚聘英才</a></li>
-            <li><a href="">使用帮助</a></li>
-            <li><a href="">退票服务</a></li>
-            <li><a href="">服务条款</a></li>
-            <li><a href="">社区管理</a></li>
+            <li><a href='about.html'>关于卖座</a></li>
+            <li><a href='contact.html'>联系我们</a></li>
+            <li><a href='business.html'>商务合作</a></li>
+            <li><a href='teamwork.html'>合作伙伴</a></li>
+            <li><a href=''>诚聘英才</a></li>
+            <li><a href=''>使用帮助</a></li>
+            <li><a href=''>退票服务</a></li>
+            <li><a href=''>服务条款</a></li>
+            <li><a href=''>社区管理</a></li>
           </ul>
         </div>
         <div id='about-right-content'>
@@ -31,7 +31,7 @@ class AboutMaizuo extends Component {
             2016年在全国共设立了20多个市场服务机构。
           </p>
           <div id='about-content-img'>
-            <img src={require('../../assets/images/footer-link/about-img.png')} alt="" />
+            <img src={require('../../assets/images/footer-link/about-img.png')} alt='' />
           </div>
           <p className='about-maizuo-contents'>卖座网于2008年自主研发星辰电子影票系统，
             该系统具有独有的新型、便捷电影票务模式， 投入市场以来，得到了用户、合作影院的一致好评，

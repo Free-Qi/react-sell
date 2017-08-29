@@ -7,7 +7,7 @@ import Business from '../../components/AboutMaizuo/Business'
 import Footer from '../../components/Footer/Footer'
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div>
         <Nav />

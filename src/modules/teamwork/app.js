@@ -7,7 +7,7 @@ import Teamwork from '../../components/AboutMaizuo/Teamwork'
 import Nav from '../../components/web-nav/nav'
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div>
         <Nav />
