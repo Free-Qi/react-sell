@@ -4,9 +4,9 @@
 import React, {Component} from 'react'
 import '../../assets/styles/placeTop.styl'
 class PlaceTop extends Component {
-  render() {
+  render () {
     return (
-      <div className="placeTop">
+      <div className='placeTop'>
         .
       </div>
     )

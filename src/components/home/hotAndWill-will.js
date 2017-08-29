@@ -16,7 +16,6 @@ class Will extends Component {
         return response.json()
       })
       .then(response => {
-        console.log(response.data)
         this.setState({
           data: response.data.films
         })
@@ -60,7 +59,7 @@ class Will extends Component {
   }
 
   render() {
-    const filmArr = this.state.data.map(function (item, index) {
+    const filmArr = this.state.data.map((item, index) => {
       return (
         <div className="home-hotfilm-one" key={index.toString()}>
           <div className="home-hotfilm-one-img">

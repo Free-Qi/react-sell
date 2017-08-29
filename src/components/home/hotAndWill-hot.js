@@ -5,7 +5,8 @@ class Hot extends Component {
     super(props)
     this.state = {
       data: [],
-      pagenum: 1
+      pagenum: 1,
+      length: 1
     }
   }
   getUrl = (myUrl) => {
@@ -16,9 +17,9 @@ class Hot extends Component {
         return response.json()
       })
       .then(response => {
-        console.log(response.data)
         this.setState({
-          data: response.data.films
+          data: response.data.films,
+          length: response.data.length
         })
       })
   }
@@ -60,7 +61,7 @@ class Hot extends Component {
   }
 
   render() {
-    const filmArr = this.state.data.map(function (item, index) {
+    const filmArr = this.state.data.map((item, index) => {
       return (
         <div className="home-hotfilm-one" key={index.toString()}>
           <div className="home-hotfilm-one-img">
@@ -74,7 +75,7 @@ class Hot extends Component {
       )
     })
     return (
-      <div id="home-hotandwill-in">
+      <div id="home-hotandwill-in" title={this.state.length}>
         <div id="hotAndWill-goleft" onClick={this.clickleft}>
           <img src={require('../../assets/Allimg/otherImg/左箭头.png')} alt="" />
         </div>

@@ -35,7 +35,7 @@ class HotAndWill extends Component {
   render() {
     var filmType = null
     if (this.state.show === 'hot') {
-      filmType = <Hot />
+      filmType = <Hot length={this.length} />
     }
     if (this.state.show === 'will') {
       filmType = <Will />
