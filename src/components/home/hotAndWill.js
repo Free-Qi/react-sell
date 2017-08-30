@@ -8,10 +8,13 @@ class HotAndWill extends Component {
     this.state = {
       show: 'hot',
       data: [],
-      pagenum: 1
+      pagenum: 1,
+      typestr: '正在热映'
     }
   }
-
+  static propTypes = {
+    inner: React.PropTypes.string
+  }
   hotClick = (e) => {
     this.setState({
       show: 'hot'
@@ -36,9 +39,15 @@ class HotAndWill extends Component {
     var filmType = null
     if (this.state.show === 'hot') {
       filmType = <Hot length={this.length} />
+      this.setState({
+        typestr: '正在热映'
+      })
     }
     if (this.state.show === 'will') {
       filmType = <Will />
+      this.setState({
+        typestr: '将要播出'
+      })
     }
     return (
       <div id="hotAndWill">
@@ -50,7 +59,7 @@ class HotAndWill extends Component {
               <h2 onClick={this.willClick}>即将上映</h2>
             </div>
             <div id="hotAndWill-header-right">
-              <p>大连正在上映 <span style={{color: 'red'}}>33</span> 部电影&nbsp;&nbsp;&nbsp;&nbsp;<a href="film.html">更多>></a>
+              <p>{this.props.inner}{this.state.typestr}如下电影&nbsp;&nbsp;&nbsp;&nbsp;<a href="film.html">更多>></a>
               </p>
             </div>
             <div className="clearboth">&nbsp;</div>
