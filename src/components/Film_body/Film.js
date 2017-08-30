@@ -188,9 +188,11 @@ class Film extends Component {
     const dataArr = this.state.data.map(function (item, index) {
       return (
         <li key={index.toString()} className='film_li'>
-          <div className='film_img'>
-            <img src={item.poster.origin} />
-          </div>
+          <a href={'twopageFilm.html?id=' + item.id}>
+            <div className='film_img'>
+              <img src={item.poster.origin} />
+            </div>
+          </a>
           <div className='film_text'>
             <h4>{item.name}</h4>
             <p>{item.grade}</p>
@@ -221,9 +223,11 @@ class Film extends Component {
               <span>{item.runtime}分钟</span>
             </div>
           </div>
-          <button className='film_btn'>
-            影片详情
-          </button>
+          <a href={'twopageFilm.html?id=' + item.id}>
+            <button className='film_btn'>
+              影片详情
+            </button>
+          </a>
         </li>
       //  <p key={index.toString()}>{item['name']}</p>
       )
