@@ -7,6 +7,7 @@
 .film_right
   width 285px
   display inline-block
+  float right
 .film_header
   width 840px
   height 40px
@@ -29,6 +30,8 @@
   line-height 40px
   font-size 14px
   margin-left 12px
+  cursor pointer
+  color #808080
 .film_body
   width 840px
   padding 20px 0
@@ -107,17 +110,23 @@
   color #ffffff
 .film_page
   width 840px
-  height 35px
+  height 36px
   text-align center
   padding 10px
+.film_page>div
+  display: inline-block
 .film_page_pre
   font-size 16px
   color #808080
   cursor pointer
+  display inline-block
+  margin-right 20px
 .film_page_next
   font-size 16px
   color #808080
   cursor pointer
+  display inline-block
+  margin-left 10px
 .film_page>div>ul>li
   list-style none
   width 26px
@@ -127,5 +136,9 @@
   border-radius 100%
   cursor pointer
   text-align center
-
-
+  display inline-block
+  margin-right 10px
+.film_page>div>ul>li:hover
+  background-color #5CBBCE
+.lired
+  background-color #5CBBCE!important
