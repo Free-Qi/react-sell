@@ -62,13 +62,15 @@ class Will extends Component {
     const filmArr = this.state.data.map((item, index) => {
       return (
         <div className="home-hotfilm-one" key={index.toString()}>
-          <div className="home-hotfilm-one-img">
-            <img src={item.poster.origin} alt='' />
-          </div>
-          <div className="home-hotfilm-text">
-            <span className="home-hotfilm-name">{item.name}</span>
-            <span className="home-hotfilm-grade">{item.grade}</span>
-          </div>
+          <a href={'twopageFilm.html?id=' + item.id}>
+            <div className="home-hotfilm-one-img">
+              <img src={item.poster.origin} alt='' />
+            </div>
+            <div className="home-hotfilm-text">
+              <span className="home-hotfilm-name">{item.name}</span>
+              <span className="home-hotfilm-grade">{item.grade}</span>
+            </div>
+          </a>
         </div>
       )
     })

@@ -6,13 +6,13 @@ import Home from '../../components/home/home'
 import Nav from '../../components/web-nav/nav'
 
 class App extends Component {
-  // constructor (props) {
-  //   super(props)
-  //   this.state = {
-  //     data: [],
-  //     cityInnerhtml: '大连'
-  //   }
-  // }
+  constructor (props) {
+    super(props)
+    this.state = {
+      data: [],
+      cityInnerhtml: '大连'
+    }
+  }
   // componentDidMount () {
   //   fetch('api/billboard/login', {
   //     method: 'GET'
@@ -27,7 +27,13 @@ class App extends Component {
   //       })
   //     })
   // }
-
+  spanclick = (e) => {
+    this.setState({
+      cityInnerhtml: e.target.innerHTML
+    }, () => {
+      console.log(this.state.cityInnerhtml)
+    })
+  }
   render () {
     // const dataArr = this.state.data.map(function (item, index) {
     //   return (
@@ -36,8 +42,8 @@ class App extends Component {
     // })
     return (
       <div>
-        <Nav />
-        <Home />
+        <Nav getinner={this.spanclick} inner={this.state.cityInnerhtml} />
+        <Home inner={this.state.cityInnerhtml} />
         <Footer />
       </div>
     )
