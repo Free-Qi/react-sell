@@ -7,5 +7,5 @@ import App from './app'
 
 ReactDOM.render(
   <App />,
-  document.getElementById('sincere')
+  document.getElementById('clause')
 )

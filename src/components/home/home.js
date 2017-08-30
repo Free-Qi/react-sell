@@ -13,13 +13,16 @@ import HotActive from './hotActive'
 import Comment from './comment'
 
 class Home extends Component {
+  static propTypes = {
+    inner: React.PropTypes.string
+  }
   render () {
     return (
       <div id='home-body'>
         <PlaceTop />
         <Lbt />
         <SomeCircle />
-        <HotAndWill />
+        <HotAndWill inner={this.props.inner} />
         <LbtTwo />
         <HotActive />
         <Comment />

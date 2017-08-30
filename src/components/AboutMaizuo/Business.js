@@ -14,11 +14,11 @@ class Business extends Component {
             <li><a href='contact.html'>联系我们</a></li>
             <li><a href='business.html'>商务合作</a></li>
             <li><a href='teamwork.html'>合作伙伴</a></li>
-            <li><a href=''>诚聘英才</a></li>
-            <li><a href=''>使用帮助</a></li>
-            <li><a href=''>退票服务</a></li>
-            <li><a href=''>服务条款</a></li>
-            <li><a href=''>社区管理</a></li>
+            <li><a href='sincere.html'>诚聘英才</a></li>
+            <li><a href='employ.html'>使用帮助</a></li>
+            <li><a href='refund.html'>退票服务</a></li>
+            <li><a href='clause.html'>服务条款</a></li>
+            <li><a href='community.html'>社区管理</a></li>
           </ul>
         </div>
         <div id='business-right-content'>

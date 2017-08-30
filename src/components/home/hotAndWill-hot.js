@@ -5,10 +5,10 @@ class Hot extends Component {
     super(props)
     this.state = {
       data: [],
-      pagenum: 1,
-      length: 1
+      pagenum: 1
     }
   }
+
   getUrl = (myUrl) => {
     fetch(myUrl, {
       method: 'GET'
@@ -18,8 +18,7 @@ class Hot extends Component {
       })
       .then(response => {
         this.setState({
-          data: response.data.films,
-          length: response.data.length
+          data: response.data.films
         })
       })
   }
@@ -55,6 +54,7 @@ class Hot extends Component {
         }
       })
   }
+
   componentDidMount() {
     let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=1&type=1'
     this.getUrl(myUrl)
@@ -64,13 +64,15 @@ class Hot extends Component {
     const filmArr = this.state.data.map((item, index) => {
       return (
         <div className="home-hotfilm-one" key={index.toString()}>
-          <div className="home-hotfilm-one-img">
-            <img src={item.poster.origin} alt='' />
-          </div>
-          <div className="home-hotfilm-text">
-            <span className="home-hotfilm-name">{item.name}</span>
-            <span className="home-hotfilm-grade">{item.grade}</span>
-          </div>
+          <a href={'twopageFilm.html?id=' + item.id}>
+            <div className="home-hotfilm-one-img">
+              <img src={item.poster.origin} alt='' />
+            </div>
+            <div className="home-hotfilm-text">
+              <span className="home-hotfilm-name">{item.name}</span>
+              <span className="home-hotfilm-grade">{item.grade}</span>
+            </div>
+          </a>
         </div>
       )
     })
