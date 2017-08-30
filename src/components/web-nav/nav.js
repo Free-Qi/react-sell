@@ -271,7 +271,7 @@ class Nav extends Component {
           <div id="page-choose">
             <a href="/"><span id="home">首页</span></a>
             <a href="film.html"><span id="film">电影</span></a>
-            <span id="cinema">影院</span>
+            <a href="MovieTheatre.html"><span id="cinema">影院</span></a>
           </div>
           <div id="nav-right">
             <div id="appdownload" onMouseOver={this.mouseoverapp} onMouseOut={this.mouseoutapp}>
