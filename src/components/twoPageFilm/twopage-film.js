@@ -3,6 +3,8 @@
  */
 import React, {Component} from 'react'
 import '../../assets/styles/twopageFilm.styl'
+import RightActive from '../rightActive/RightActive'
+import TwopageFilmCinema from './twopage-film-cinema'
 class TwopageFilm extends Component {
   constructor(props) {
     super(props)
@@ -28,6 +30,12 @@ class TwopageFilm extends Component {
       photos: []
     }
   }
+
+  static propTypes = {
+    cityID: React.PropTypes.number,
+    cityName: React.PropTypes.string
+
+  }
   moreClick = () => {
     this.setState({
       height: 80,
@@ -46,9 +54,9 @@ class TwopageFilm extends Component {
     fetch(myUrl, {
       method: 'GET'
     })
-      .then(response => {
-        return response.json()
-      })
+    .then(response => {
+      return response.json()
+    })
       .then(response => {
         this.setState({
           filename: response.data.film.name,
@@ -60,7 +68,7 @@ class TwopageFilm extends Component {
           intro: response.data.film.intro,
           smallsrc: response.data.film.poster.origin,
           bigsrc: response.data.film.poster.cover,
-          premiereAt: new Date(parseInt(response.data.film.premiereAt) * 1000).toLocaleString(),
+          premiereAt: new Date(response.data.film.premiereAt).toLocaleDateString(),
           category: response.data.film.category,
           director: response.data.film.director,
           synopsis: response.data.film.synopsis,
@@ -71,6 +79,7 @@ class TwopageFilm extends Component {
       )
   }
   goleft = () => {
+    clearInterval(this.timer)
     this.timer = setInterval(() => {
       this.setState({
         left: this.state.left + 10
@@ -84,7 +93,8 @@ class TwopageFilm extends Component {
       })
     }, 1)
   }
-  goright =() => {
+  goright = () => {
+    clearInterval(this.timer)
     this.timer = setInterval(() => {
       this.setState({
         left: this.state.left - 10
@@ -98,11 +108,11 @@ class TwopageFilm extends Component {
       })
     }, 1)
   }
+
   componentDidMount() {
     let myUrl = '/api/film/' + location.search.match(/\d+/g)[0] + '?__t=1503994732857'
     this.getUrl(myUrl)
   }
-
   render() {
     let actorsArr = this.state.actors.map((item, index) => {
       return (
@@ -174,6 +184,15 @@ class TwopageFilm extends Component {
             <div id="goright" onClick={this.goright}>
               <img src={require('../../assets/Allimg/otherImg/右箭头.png')} alt="" />
             </div>
+          </div>
+          <div id="twopagefilm-bottom">
+            <div id="left-cinema">
+              <TwopageFilmCinema cityID={this.props.cityID} cityName={this.props.cityName} />
+            </div>
+            <div className="right-active">
+              <RightActive />
+            </div>
+            <div className="clearboth">&nbsp;</div>
           </div>
           <div className="clearboth">&nbsp;</div>
         </div>

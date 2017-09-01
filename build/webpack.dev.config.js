@@ -11,7 +11,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 // 修改webpack配置的entry
 Object.keys(baseWebpackConfig.entry).forEach(function (item, index, array) {
-  baseWebpackConfig.entry[item] = ['whatwg-fetch', './build/dev-client'].concat(baseWebpackConfig.entry[item])
+  baseWebpackConfig.entry[item] = ['axios','whatwg-fetch', './build/dev-client'].concat(baseWebpackConfig.entry[item])
 })
 
 // 合并base 与dev的配置,

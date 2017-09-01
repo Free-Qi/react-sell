@@ -21,6 +21,7 @@ class Nav extends Component {
   static propTypes = {
     getinner: React.PropTypes.func,
     inner: React.PropTypes.string
+    // getTitle: React.PropTypes.func
   }
   componentDidMount() {
     fetch('api/city?__t=1503626376224', {
@@ -64,154 +65,154 @@ class Nav extends Component {
     var Aspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'A') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Bspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'B') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Cspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'C') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Dspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'D') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name} >{item.name}</span>
         )
       }
     })
     var Espan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'E') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Fspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'F') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Gspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'G') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Hspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'H') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Jspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'J') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Kspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'K') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Lspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'L') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Mspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'M') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Nspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'N') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name} >{item.name}</span>
         )
       }
     })
     var Pspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'P') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Qspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'Q') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name} >{item.name}</span>
         )
       }
     })
     var Rspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'R') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Sspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'S') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Tspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'T') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Wspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'W') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Xspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'X') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name} >{item.name}</span>
         )
       }
     })
     var Yspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'Y') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })
     var Zspan = this.state.data.map((item, index) => {
       if (item.pinyin.substr(0, 1) === 'Z') {
         return (
-          <span key={index} onClick={this.props.getinner} >{item.name}</span>
+          <span key={index} onClick={this.props.getinner} title={item.id} name={item.name}>{item.name}</span>
         )
       }
     })

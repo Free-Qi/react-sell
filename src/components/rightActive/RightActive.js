@@ -5,28 +5,6 @@ import React, {Component} from 'react'
 import '../../assets/styles/right-active.styl'
 
 class RightActive extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      data: []
-    }
-  }
-
-  componentDidMount () {
-    fetch('/api/billboard/active?__t=1503714594557&type=2', {
-      method: 'GET'
-    })
-        .then(response => {
-          return response.json()
-        })
-        .then(response => {
-          console.log(response.data)
-          this.setState({
-            data: response.data
-          })
-        })
-  }
-
   render () {
     return (
       <div id='right-active-big'>

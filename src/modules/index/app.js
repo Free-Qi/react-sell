@@ -31,7 +31,6 @@ class App extends Component {
     this.setState({
       cityInnerhtml: e.target.innerHTML
     }, () => {
-      console.log(this.state.cityInnerhtml)
     })
   }
   render () {
