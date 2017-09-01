@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import '../../assets/styles/Film.styl'
-import FilmHotActive from './FilmHotActive'
-// import RigthActive from '../rightActive/RightActive'
+// import FilmHotActive from './FilmHotActive'
+import RightActive from './RightActive'
 class Film extends Component {
   constructor (props) {
     super(props)
@@ -379,7 +379,7 @@ class Film extends Component {
           </div>
         </div>
         <div className='film_right'>
-          <FilmHotActive />
+          <RightActive />
         </div>
       </div>
     )
