@@ -13,6 +13,9 @@ class MovieTheatre extends Component {
       data: []
     }
   }
+  static propTypes = {
+    status: React.PropTypes.func
+  }
   click = () => {
     const obtn1 = document.getElementById('movie-theatre-data1')
     obtn1.style.backgroundColor = 'red'
@@ -79,8 +82,6 @@ class MovieTheatre extends Component {
       }, 1)
     }
   }
-  select = () => {
-  }
   componentDidMount () {
     fetch('api/cinema/4698/film?__t=1504138258102', {
       method: 'GET'
@@ -98,7 +99,7 @@ class MovieTheatre extends Component {
     var arr = []
     for (let i = 0; i < this.state.data.length; i++) {
       arr.push(
-        <div className="movie-theatre-slideshow" onClick={this.select}>
+        <div className="movie-theatre-slideshow" onClick={this.props.status}>
           <img src={this.state.data[i].poster.thumbnail} alt="" />
         </div>
       )
