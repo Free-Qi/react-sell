@@ -79,7 +79,7 @@ class MovieTheatre extends Component {
       }, 1)
     }
   }
-  onclick = () => {
+  select = () => {
   }
   componentDidMount () {
     fetch('api/cinema/4698/film?__t=1504138258102', {
@@ -98,7 +98,7 @@ class MovieTheatre extends Component {
     var arr = []
     for (let i = 0; i < this.state.data.length; i++) {
       arr.push(
-        <div className="movie-theatre-slideshow">
+        <div className="movie-theatre-slideshow" onClick={this.select}>
           <img src={this.state.data[i].poster.thumbnail} alt="" />
         </div>
       )
@@ -110,7 +110,6 @@ class MovieTheatre extends Component {
           <div id="movie-theatre-content">
             <h2>电影院</h2>
             <div className="movie-theatre-phone">电话:<span>111</span></div>
-            <div className="movie-theatre-phone">地址:<span>222</span></div>
           </div>
         </div>
         <div id="movie-theatre-ticket">

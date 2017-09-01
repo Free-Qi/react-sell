@@ -12,7 +12,10 @@ class TwopageFilmCinema extends Component {
       data: [],
       taday: '',
       temorow: '',
-      myarr: []
+      myarr: [],
+      tel: '',
+      name: '',
+      address: ''
     }
   }
   getUrl = (myUrl) => {
@@ -24,7 +27,10 @@ class TwopageFilmCinema extends Component {
       this.setState({
         data: response.data.data.cinemas,
         taday: new Date(new Date()).toLocaleDateString(),
-        temorow: new Date(new Date().getTime() + 86400000).toLocaleDateString()
+        temorow: new Date(new Date().getTime() + 86400000).toLocaleDateString(),
+        tel: response.data.data.cinemas[0].telephones,
+        name: response.data.data.cinemas[0].name,
+        address: response.data.data.cinemas[0].address
       }, () => {
         this.removeS(this.state.data)
       })
@@ -64,7 +70,24 @@ class TwopageFilmCinema extends Component {
     })
     e.target.className = 'needblue'
   }
+  cinemaclick = (e) => {
+    var divArr = document.querySelectorAll('#page2cinema #cinema-right div')
+    divArr.forEach((item, index) => {
+      item.className = 'cinemaArr needspan'
+    })
+    e.target.className = 'cinemaArr needblue'
+    this.setState({
+      tel: e.target.getAttribute('id'),
+      name: e.target.getAttribute('name'),
+      address: e.target.getAttribute('title')
+    })
+  }
   render() {
+    var cinemaArr = this.state.data.map((item, index) => {
+      return (
+        <div className="cinemaArr needspan" onClick={this.cinemaclick} id={item.telephones} name={item.name} title={item.address} key={index.toString()}>{item.name}</div>
+      )
+    })
     return (
       <div id="TwopageFilmCinema">
         <div id="TwopageFilmCinema-header">
@@ -81,10 +104,21 @@ class TwopageFilmCinema extends Component {
           {
             this.state.myarr.map((item, index) => {
               return (
-                <span key={index} className="needspan" onClick={this.placeclick}>{item}</span>
+                <span key={index.toString()} className="needspan" onClick={this.placeclick}>{item}</span>
               )
             })
           }
+        </div>
+        <div id="page2cinema">
+          <i className="label">影院:</i>
+          <div id="cinema-right">
+            {cinemaArr}
+          </div>
+        </div>
+        <div id="mycinemas">
+          <span className="cinema-name">{this.state.name}</span>
+          <span className="needspan">{this.state.tel}</span>
+          <span className="needspan">{this.state.address}</span>
         </div>
       </div>
     )

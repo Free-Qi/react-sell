@@ -20,8 +20,8 @@ class RightActive extends Component {
           <a href='http://m.maizuo.com/act/active/1008'>一元看电影</a>
           <div className='right-active-mank' id='right-active-mank1'>&nbsp;</div>
         </p>
-        <div className='right-active-area' id='right-active-area1'>.</div>
-        <div className='right-active-area' id='right-active-area2'>.</div>
+        <div className='right-active-area' id='right-active-area1'>&nbsp;</div>
+        <div className='right-active-area' id='right-active-area2'>&nbsp;</div>
         <div className='right-active-img'>
           <img src={'https://static.maizuo.com/pc/v5/manager/f04d77342fe8c4b1925d15822237e154.jpg'} alt='' />
           <div className='right-active-mank' id='mank-two'>
@@ -32,8 +32,8 @@ class RightActive extends Component {
           <a href='https://mall.maizuo.com/#!/item/pCeYKZpYDUXI'>好吃不上火</a>
           <div className='right-active-mank' id='right-active-mank2'>&nbsp;</div>
         </p>
-        <div className='right-active-area' id='right-active-area3'>.</div>
-        <div className='right-active-area' id='right-active-area4'>.</div>
+        <div className='right-active-area' id='right-active-area3'>&nbsp;</div>
+        <div className='right-active-area' id='right-active-area4'>&nbsp;</div>
         <div className='right-active-img'>
           <img src={'https://static.maizuo.com/pc/v5/manager/faa4cade61ff18b87ac746dce5859ced.jpg'} alt='' />
           <div className='right-active-mank' id='mank-three'>
