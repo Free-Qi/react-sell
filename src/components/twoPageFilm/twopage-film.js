@@ -116,7 +116,7 @@ class TwopageFilm extends Component {
   render() {
     let actorsArr = this.state.actors.map((item, index) => {
       return (
-        <div className="actor" key={index}>
+        <div className="actor" key={index.toString()}>
           <div className="actor-img">
             <img src={item.avatarAddress} alt="" />
           </div>
@@ -128,7 +128,7 @@ class TwopageFilm extends Component {
     })
     let photosArr = this.state.photos.map((item, index) => {
       return (
-        <div className="moveimg-one" key={index}>
+        <div className="moveimg-one" key={index.toString()}>
           <img src={item.pictureAddress} alt="" />
         </div>
       )
