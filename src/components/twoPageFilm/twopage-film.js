@@ -167,7 +167,7 @@ class TwopageFilm extends Component {
           </div>
           <div className="place">.</div>
           <div id="moveimg-view">
-            <div id="moveimg-move" style={{left: this.state.left}}>{photosArr}{photosArr}{photosArr}</div>
+            <div id="moveimg-move" style={{left: this.state.left}}>{photosArr}{photosArr}{photosArr}{photosArr}</div>
             <div id="goleft" onClick={this.goleft}>
               <img src={require('../../assets/Allimg/otherImg/左箭头.png')} alt="" />
             </div>
