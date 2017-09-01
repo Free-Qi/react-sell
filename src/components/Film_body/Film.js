@@ -11,7 +11,8 @@ class Film extends Component {
       pagenum: 1,
       page: 1,
       sortType: 1,
-      type: 1
+      type: 1,
+      total: ''
     }
   }
   // componentDidMount () {
@@ -42,13 +43,34 @@ class Film extends Component {
         })
       })
   }
+  getUrl2 = (myUrl) => {
+    fetch(myUrl, {
+      method: 'GET'
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(response => {
+       // console.log(response.data.page.total)
+        this.setState({
+          total: response.data.page.total
+        })
+      })
+  }
 
   componentDidMount() {
    // this.hotClick()
     let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=' + this.state.sortType + '&type=1'
     this.getUrl(myUrl)
+    this.getUrl2(myUrl)
     var abc = document.getElementById('abc')
     abc.className = 'spanred'
+    // this.setState({
+    //   total: this.state.data['page']['total']
+    // }, () => {
+    //   console.log(this.state.total)
+    // })
+    console.log(this.state.total)
   }
   hotClick = (e) => {
     this.setState({
@@ -77,39 +99,107 @@ class Film extends Component {
     this.getUrl(myUrl)
   }
   pageBtn = (e) => {
-    // if (e.target.innerHTML >= 3 && e.target.innerHTML <= 50) {
-    //   var pageLiA = Number(e.target.innerHTML) - 2
-    //   document.getElementById('pageLiA').innerHTML = pageLiA
-    //   var pageLiB = Number(e.target.innerHTML) - 1
-    //   document.getElementById('pageLiB').innerHTML = pageLiB
-    //   var pageLiC = Number(e.target.innerHTML)
-    //   document.getElementById('pageLiC').innerHTML = pageLiC
-    //   var pageLiD = Number(e.target.innerHTML) + 1
-    //   document.getElementById('pageLiD').innerHTML = pageLiD
-    //   var pageLiE = Number(e.target.innerHTML) + 2
-    //   document.getElementById('pageLiE').innerHTML = pageLiE
-    // }
     this.setState({
       pagenum: Number(e.target.innerHTML)
+    }, () => {
+      if (this.state.pagenum === Math.floor(this.state.total / 6) + 1) {
+        let pageLiA = Math.floor(this.state.total / 6) - 3
+        document.getElementById('pageLiA').innerHTML = pageLiA
+        let pageLiB = Math.floor(this.state.total / 6) - 2
+        document.getElementById('pageLiB').innerHTML = pageLiB
+        let pageLiC = Math.floor(this.state.total / 6) - 1
+        document.getElementById('pageLiC').innerHTML = pageLiC
+        let pageLiD = Math.floor(this.state.total / 6)
+        document.getElementById('pageLiD').innerHTML = pageLiD
+        let pageLiE = Math.floor(this.state.total / 6) + 1
+        document.getElementById('pageLiE').innerHTML = pageLiE
+        let liArr = document.querySelectorAll('.film_page div ul li')
+        liArr.forEach(function (item, index) {
+          item.className = ''
+        })
+        document.getElementById('pageLiE').className = 'lired'
+        console.log('8')
+      }
+      if (this.state.pagenum === Math.floor(this.state.total / 6)) {
+        let pageLiA = Math.floor(this.state.total / 6) - 3
+        document.getElementById('pageLiA').innerHTML = pageLiA
+        let pageLiB = Math.floor(this.state.total / 6) - 2
+        document.getElementById('pageLiB').innerHTML = pageLiB
+        let pageLiC = Math.floor(this.state.total / 6) - 1
+        document.getElementById('pageLiC').innerHTML = pageLiC
+        let pageLiD = Math.floor(this.state.total / 6)
+        document.getElementById('pageLiD').innerHTML = pageLiD
+        let pageLiE = Math.floor(this.state.total / 6) + 1
+        document.getElementById('pageLiE').innerHTML = pageLiE
+        let liArr = document.querySelectorAll('.film_page div ul li')
+        liArr.forEach(function (item, index) {
+          item.className = ''
+        })
+        document.getElementById('pageLiD').className = 'lired'
+        console.log(Math.floor(this.state.total / 6))
+      }
+      if (this.state.pagenum >= 4 && this.state.pagenum <= Math.floor(this.state.total / 6) - 1) {
+        let pageLiA = Number(this.state.pagenum) - 2
+        document.getElementById('pageLiA').innerHTML = pageLiA
+        let pageLiB = Number(this.state.pagenum) - 1
+        document.getElementById('pageLiB').innerHTML = pageLiB
+        let pageLiC = Number(this.state.pagenum)
+        document.getElementById('pageLiC').innerHTML = pageLiC
+        let pageLiD = Number(this.state.pagenum) + 1
+        document.getElementById('pageLiD').innerHTML = pageLiD
+        let pageLiE = Number(this.state.pagenum) + 2
+        document.getElementById('pageLiE').innerHTML = pageLiE
+        let liArr = document.querySelectorAll('.film_page div ul li')
+        liArr.forEach(function (item, index) {
+          item.className = ''
+        })
+        document.getElementById('pageLiC').className = 'lired'
+        console.log('6')
+      }
+      if (this.state.pagenum === 3) {
+        document.getElementById('pageLiA').innerHTML = '1'
+        document.getElementById('pageLiB').innerHTML = '2'
+        document.getElementById('pageLiC').innerHTML = '3'
+        document.getElementById('pageLiD').innerHTML = '4'
+        document.getElementById('pageLiE').innerHTML = '5'
+        let liArr = document.querySelectorAll('.film_page div ul li')
+        liArr.forEach(function (item, index) {
+          item.className = ''
+        })
+        document.getElementById('pageLiC').className = 'lired'
+      }
+      if (this.state.pagenum === 2) {
+        document.getElementById('pageLiA').innerHTML = '1'
+        document.getElementById('pageLiB').innerHTML = '2'
+        document.getElementById('pageLiC').innerHTML = '3'
+        document.getElementById('pageLiD').innerHTML = '4'
+        document.getElementById('pageLiE').innerHTML = '5'
+        let liArr = document.querySelectorAll('.film_page div ul li')
+        liArr.forEach(function (item, index) {
+          item.className = ''
+        })
+        document.getElementById('pageLiB').className = 'lired'
+      }
+      if (this.state.pagenum === 1) {
+        document.getElementById('pageLiA').innerHTML = '1'
+        document.getElementById('pageLiB').innerHTML = '2'
+        document.getElementById('pageLiC').innerHTML = '3'
+        document.getElementById('pageLiD').innerHTML = '4'
+        document.getElementById('pageLiE').innerHTML = '5'
+        let liArr = document.querySelectorAll('.film_page div ul li')
+        liArr.forEach(function (item, index) {
+          item.className = ''
+        })
+        document.getElementById('pageLiA').className = 'lired'
+      }
     })
     let myUrl = 'api/film?__t=1503715245520&page=' + e.target.innerHTML + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
     this.getUrl(myUrl)
-    let liArr = document.querySelectorAll('.film_page div ul li')
-    liArr.forEach(function (item, index) {
-      item.className = ''
-    })
-    e.target.className = 'lired'
-    // document.getElementById('pageLiC').className = 'lired'
+    // let liArr = document.querySelectorAll('.film_page div ul li')
+    // liArr.forEach(function (item, index) {
+    //   item.className = ''
+    // })
     // e.target.className = 'lired'
-    // console.log(e.target.innerHTML)
-    // if (this.state.show === 'hot') {
-    //   let myUrl = 'api/film?__t=1503715245520&page=' + e.target.innerHTML + '&count=6&sortType=' + this.state.sortType + '&type=1'
-    //   this.getUrl(myUrl)
-    // }
-    // if (this.state.show === 'will') {
-    //   let myUrl2 = 'api/film?__t=1503715245520&page=' + e.target.innerHTML + '&count=6&sortType=' + this.state.sortType + '&type=2'
-    //   this.getUrl(myUrl2)
-    // }
   }
   preClick = (e) => {
     this.setState({
@@ -122,17 +212,68 @@ class Film extends Component {
           pagenum: 1
         })
       }
-      if (this.state.pagenum > 3 && this.state.pagenum <= 50) {
-        var pageLiA = Number(this.state.pagenum) - 2
+      // if (this.state.pagenum > 3 && this.state.pagenum <= 50) {
+      //   var pageLiA = Number(this.state.pagenum) - 2
+      //   document.getElementById('pageLiA').innerHTML = pageLiA
+      //   var pageLiB = Number(this.state.pagenum) - 1
+      //   document.getElementById('pageLiB').innerHTML = pageLiB
+      //   var pageLiC = Number(this.state.pagenum)
+      //   document.getElementById('pageLiC').innerHTML = pageLiC
+      //   var pageLiD = Number(this.state.pagenum) + 1
+      //   document.getElementById('pageLiD').innerHTML = pageLiD
+      //   var pageLiE = Number(this.state.pagenum) + 2
+      //   document.getElementById('pageLiE').innerHTML = pageLiE
+      // }
+      if (this.state.pagenum >= 3 && this.state.pagenum <= Math.floor(this.state.total / 6) - 2) {
+        let pageLiA = Number(this.state.pagenum) - 2
         document.getElementById('pageLiA').innerHTML = pageLiA
-        var pageLiB = Number(this.state.pagenum) - 1
+        let pageLiB = Number(this.state.pagenum) - 1
         document.getElementById('pageLiB').innerHTML = pageLiB
-        var pageLiC = Number(this.state.pagenum)
+        let pageLiC = Number(this.state.pagenum)
         document.getElementById('pageLiC').innerHTML = pageLiC
-        var pageLiD = Number(this.state.pagenum) + 1
+        let pageLiD = Number(this.state.pagenum) + 1
         document.getElementById('pageLiD').innerHTML = pageLiD
-        var pageLiE = Number(this.state.pagenum) + 2
+        let pageLiE = Number(this.state.pagenum) + 2
         document.getElementById('pageLiE').innerHTML = pageLiE
+        let liArr = document.querySelectorAll('.film_page div ul li')
+        liArr.forEach(function (item, index) {
+          item.className = ''
+        })
+        document.getElementById('pageLiC').className = 'lired'
+      }
+      if (this.state.pagenum >= Math.floor(this.state.total / 6) - 4 && this.state.pagenum < Math.floor(this.state.total / 6)) {
+        let pageLiA = Number(this.state.pagenum) - 2
+        document.getElementById('pageLiA').innerHTML = pageLiA
+        let pageLiB = Number(this.state.pagenum) - 1
+        document.getElementById('pageLiB').innerHTML = pageLiB
+        let pageLiC = Number(this.state.pagenum)
+        document.getElementById('pageLiC').innerHTML = pageLiC
+        let pageLiD = Number(this.state.pagenum) + 1
+        document.getElementById('pageLiD').innerHTML = pageLiD
+        let pageLiE = Number(this.state.pagenum) + 2
+        document.getElementById('pageLiE').innerHTML = pageLiE
+        let liArr = document.querySelectorAll('.film_page div ul li')
+        liArr.forEach(function (item, index) {
+          item.className = ''
+        })
+        document.getElementById('pageLiC').className = 'lired'
+      }
+      if (this.state.pagenum === Math.floor(this.state.total / 6)) {
+        let pageLiA = Number(this.state.pagenum) - 3
+        document.getElementById('pageLiA').innerHTML = pageLiA
+        let pageLiB = Number(this.state.pagenum) - 2
+        document.getElementById('pageLiB').innerHTML = pageLiB
+        let pageLiC = Number(this.state.pagenum) - 1
+        document.getElementById('pageLiC').innerHTML = pageLiC
+        let pageLiD = Number(this.state.pagenum)
+        document.getElementById('pageLiD').innerHTML = pageLiD
+        let pageLiE = Number(this.state.pagenum) + 1
+        document.getElementById('pageLiE').innerHTML = pageLiE
+        let liArr = document.querySelectorAll('.film_page div ul li')
+        liArr.forEach(function (item, index) {
+          item.className = ''
+        })
+        document.getElementById('pageLiD').className = 'lired'
       }
     })
     if (this.state.pagenum === 2) {
@@ -149,16 +290,61 @@ class Film extends Component {
       })
       document.getElementById('pageLiB').className = 'lired'
     }
-    if (this.state.pagenum === 4) {
+    console.log(this.state.pagenum)
+  }
+  nextClick = (e) => {
+    if (this.state.pagenum >= 3 && this.state.pagenum <= Math.floor(this.state.total / 6) - 2) {
+      let pageLiA = Number(this.state.pagenum) - 1
+      document.getElementById('pageLiA').innerHTML = pageLiA
+      let pageLiB = Number(this.state.pagenum)
+      document.getElementById('pageLiB').innerHTML = pageLiB
+      let pageLiC = Number(this.state.pagenum) + 1
+      document.getElementById('pageLiC').innerHTML = pageLiC
+      let pageLiD = Number(this.state.pagenum) + 2
+      document.getElementById('pageLiD').innerHTML = pageLiD
+      let pageLiE = Number(this.state.pagenum) + 3
+      document.getElementById('pageLiE').innerHTML = pageLiE
       let liArr = document.querySelectorAll('.film_page div ul li')
       liArr.forEach(function (item, index) {
         item.className = ''
       })
       document.getElementById('pageLiC').className = 'lired'
     }
-    console.log(this.state.pagenum)
-  }
-  nextClick = (e) => {
+    if (this.state.pagenum >= Math.floor(this.state.total / 6) - 2 && this.state.pagenum < Math.floor(this.state.total / 6)) {
+      let pageLiA = Number(this.state.pagenum) - 2
+      document.getElementById('pageLiA').innerHTML = pageLiA
+      let pageLiB = Number(this.state.pagenum) - 1
+      document.getElementById('pageLiB').innerHTML = pageLiB
+      let pageLiC = Number(this.state.pagenum)
+      document.getElementById('pageLiC').innerHTML = pageLiC
+      let pageLiD = Number(this.state.pagenum) + 1
+      document.getElementById('pageLiD').innerHTML = pageLiD
+      let pageLiE = Number(this.state.pagenum) + 2
+      document.getElementById('pageLiE').innerHTML = pageLiE
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiD').className = 'lired'
+    }
+    if (this.state.pagenum === Math.floor(this.state.total / 6)) {
+      let pageLiA = Number(this.state.pagenum) - 3
+      document.getElementById('pageLiA').innerHTML = pageLiA
+      let pageLiB = Number(this.state.pagenum) - 2
+      document.getElementById('pageLiB').innerHTML = pageLiB
+      let pageLiC = Number(this.state.pagenum) - 1
+      document.getElementById('pageLiC').innerHTML = pageLiC
+      let pageLiD = Number(this.state.pagenum)
+      document.getElementById('pageLiD').innerHTML = pageLiD
+      let pageLiE = Number(this.state.pagenum) + 1
+      document.getElementById('pageLiE').innerHTML = pageLiE
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiE').className = 'lired'
+    }
+    // console.log(Math.floor(this.state.total / 6) - 2)
     if (this.state.pagenum === 1) {
       let liArr = document.querySelectorAll('.film_page div ul li')
       liArr.forEach(function (item, index) {
@@ -173,23 +359,23 @@ class Film extends Component {
       })
       document.getElementById('pageLiC').className = 'lired'
     }
-    if (this.state.pagenum >= 3 && this.state.pagenum <= 50) {
-      var pageLiA = Number(this.state.pagenum) - 1
-      document.getElementById('pageLiA').innerHTML = pageLiA
-      var pageLiB = Number(this.state.pagenum)
-      document.getElementById('pageLiB').innerHTML = pageLiB
-      var pageLiC = Number(this.state.pagenum) + 1
-      document.getElementById('pageLiC').innerHTML = pageLiC
-      var pageLiD = Number(this.state.pagenum) + 2
-      document.getElementById('pageLiD').innerHTML = pageLiD
-      var pageLiE = Number(this.state.pagenum) + 3
-      document.getElementById('pageLiE').innerHTML = pageLiE
-      let liArr = document.querySelectorAll('.film_page div ul li')
-      liArr.forEach(function (item, index) {
-        item.className = ''
-      })
-      document.getElementById('pageLiC').className = 'lired'
-    }
+    // if (this.state.pagenum >= 3 && this.state.pagenum <= 50) {
+    //   var pageLiA = Number(this.state.pagenum) - 1
+    //   document.getElementById('pageLiA').innerHTML = pageLiA
+    //   var pageLiB = Number(this.state.pagenum)
+    //   document.getElementById('pageLiB').innerHTML = pageLiB
+    //   var pageLiC = Number(this.state.pagenum) + 1
+    //   document.getElementById('pageLiC').innerHTML = pageLiC
+    //   var pageLiD = Number(this.state.pagenum) + 2
+    //   document.getElementById('pageLiD').innerHTML = pageLiD
+    //   var pageLiE = Number(this.state.pagenum) + 3
+    //   document.getElementById('pageLiE').innerHTML = pageLiE
+    //   let liArr = document.querySelectorAll('.film_page div ul li')
+    //   liArr.forEach(function (item, index) {
+    //     item.className = ''
+    //   })
+    //   document.getElementById('pageLiC').className = 'lired'
+    // }
     let myUrl = 'api/film?__t=1503715245520&page=' + (this.state.pagenum + 1) + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
     fetch(myUrl, {
       method: 'GET'
