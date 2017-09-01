@@ -5,6 +5,7 @@ import React, {Component} from 'react'
 import Nav from '../../components/web-nav/nav'
 import MovieTheatre from '../../components/MovieTheatre/MovieTheatre'
 import Footer from '../../components/Footer/Footer'
+import MovitTheatreTwo from '../../components/MovieTheatre/MovieTheatre2'
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
       <div>
         <Nav />
         <MovieTheatre />
+        <MovitTheatreTwo />
         <Footer />
       </div>
     )

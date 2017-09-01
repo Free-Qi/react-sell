@@ -71,6 +71,7 @@ class TwopageFilm extends Component {
       )
   }
   goleft = () => {
+    clearInterval(this.timer)
     this.timer = setInterval(() => {
       this.setState({
         left: this.state.left + 10
@@ -85,6 +86,7 @@ class TwopageFilm extends Component {
     }, 1)
   }
   goright =() => {
+    clearInterval(this.timer)
     this.timer = setInterval(() => {
       this.setState({
         left: this.state.left - 10

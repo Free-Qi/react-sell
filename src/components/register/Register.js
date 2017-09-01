@@ -17,12 +17,12 @@ class Register extends Component {
       method: 'GET'
     })
             .then(response => {
-              return response.json()
+              return response.blob()
             })
             .then(response => {
-              console.log(response.data.imageUrl)
+              console.log(response)
               this.setState({
-                data: response.data.imageUrl
+                data: response.data
               })
             })
   }
