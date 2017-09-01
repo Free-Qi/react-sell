@@ -149,6 +149,13 @@ class Film extends Component {
       })
       document.getElementById('pageLiB').className = 'lired'
     }
+    if (this.state.pagenum === 4) {
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiC').className = 'lired'
+    }
     console.log(this.state.pagenum)
   }
   nextClick = (e) => {
