@@ -25,7 +25,7 @@ class FilmHotActive extends Component {
   render () {
     var threeArr = this.state.data.map((item, index) => {
       return (
-        <div className='hotActive-left-body-one'>
+        <div key={index.toString()} className='hotActive-left-body-one'>
           <a href={item.url}>
             <div className='hotActive-left-body-one-img'>
               <img src={item.imageUrl} alt='' />

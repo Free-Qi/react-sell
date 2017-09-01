@@ -36,7 +36,7 @@ class Comment extends Component {
           data: response.data.comments
         })
       })
-    this.timer = setInterval(this.move, 4000)
+    this.timer = setInterval(this.move, 8000)
   }
 
   render() {
