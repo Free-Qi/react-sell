@@ -27,7 +27,8 @@ class TwopageFilm extends Component {
       director: '',
       synopsis: '',
       actors: [],
-      photos: []
+      photos: [],
+      filmid: ''
     }
   }
 
@@ -73,7 +74,8 @@ class TwopageFilm extends Component {
           director: response.data.film.director,
           synopsis: response.data.film.synopsis,
           actors: response.data.film.actors,
-          photos: response.data.film.photos
+          photos: response.data.film.photos,
+          filmid: location.search.match(/\d+/g)[0]
         })
       }
       )
@@ -187,7 +189,7 @@ class TwopageFilm extends Component {
           </div>
           <div id="twopagefilm-bottom">
             <div id="left-cinema">
-              <TwopageFilmCinema cityID={this.props.cityID} cityName={this.props.cityName} />
+              <TwopageFilmCinema cityID={this.props.cityID} cityName={this.props.cityName} filmid={this.state.filmid} />
             </div>
             <div className="right-active">
               <RightActive />
