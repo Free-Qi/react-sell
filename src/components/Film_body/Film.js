@@ -77,22 +77,29 @@ class Film extends Component {
     this.getUrl(myUrl)
   }
   pageBtn = (e) => {
-    if (e.target.innerHTML >= 3 && e.target.innerHTML <= 50) {
-      var pageLiA = Number(e.target.innerHTML) - 2
-      document.getElementById('pageLiA').innerHTML = pageLiA
-      var pageLiB = Number(e.target.innerHTML) - 1
-      document.getElementById('pageLiB').innerHTML = pageLiB
-      var pageLiC = Number(e.target.innerHTML)
-      document.getElementById('pageLiC').innerHTML = pageLiC
-      var pageLiD = Number(e.target.innerHTML) + 1
-      document.getElementById('pageLiD').innerHTML = pageLiD
-      var pageLiE = Number(e.target.innerHTML) + 2
-      document.getElementById('pageLiE').innerHTML = pageLiE
-      this.setState({
-        pagenum: Number(e.target.innerHTML)
-      })
-    }
-    document.getElementById('pageLiC').className = 'lired'
+    // if (e.target.innerHTML >= 3 && e.target.innerHTML <= 50) {
+    //   var pageLiA = Number(e.target.innerHTML) - 2
+    //   document.getElementById('pageLiA').innerHTML = pageLiA
+    //   var pageLiB = Number(e.target.innerHTML) - 1
+    //   document.getElementById('pageLiB').innerHTML = pageLiB
+    //   var pageLiC = Number(e.target.innerHTML)
+    //   document.getElementById('pageLiC').innerHTML = pageLiC
+    //   var pageLiD = Number(e.target.innerHTML) + 1
+    //   document.getElementById('pageLiD').innerHTML = pageLiD
+    //   var pageLiE = Number(e.target.innerHTML) + 2
+    //   document.getElementById('pageLiE').innerHTML = pageLiE
+    // }
+    this.setState({
+      pagenum: Number(e.target.innerHTML)
+    })
+    let myUrl = 'api/film?__t=1503715245520&page=' + e.target.innerHTML + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
+    this.getUrl(myUrl)
+    let liArr = document.querySelectorAll('.film_page div ul li')
+    liArr.forEach(function (item, index) {
+      item.className = ''
+    })
+    e.target.className = 'lired'
+    // document.getElementById('pageLiC').className = 'lired'
     // e.target.className = 'lired'
     // console.log(e.target.innerHTML)
     // if (this.state.show === 'hot') {
@@ -103,8 +110,6 @@ class Film extends Component {
     //   let myUrl2 = 'api/film?__t=1503715245520&page=' + e.target.innerHTML + '&count=6&sortType=' + this.state.sortType + '&type=2'
     //   this.getUrl(myUrl2)
     // }
-    let myUrl = 'api/film?__t=1503715245520&page=' + e.target.innerHTML + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
-    this.getUrl(myUrl)
   }
   preClick = (e) => {
     if (this.state.pagenum === 2) {
@@ -308,8 +313,8 @@ class Film extends Component {
               </li>
               <li>
                 <label>主演: </label>
-                <span> {item.actors.map(function (item1) {
-                  return <span>{item1['name']} / </span>
+                <span> {item.actors.map(function (item1, index) {
+                  return <span key={index.toString()}>{item1['name']} / </span>
                 })}</span>
               </li>
               <li>
