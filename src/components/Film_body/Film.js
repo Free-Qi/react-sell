@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import '../../assets/styles/Film.styl'
+import FilmHotActive from './FilmHotActive'
 // import RigthActive from '../rightActive/RightActive'
 class Film extends Component {
   constructor (props) {
@@ -7,7 +8,10 @@ class Film extends Component {
     this.state = {
       data: [],
       show: 'hot',
-      pagenum: 1
+      pagenum: 1,
+      page: 1,
+      sortType: 1,
+      type: 1
     }
   }
   // componentDidMount () {
@@ -41,40 +45,258 @@ class Film extends Component {
 
   componentDidMount() {
    // this.hotClick()
-    let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=1&type=1'
+    let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=' + this.state.sortType + '&type=1'
     this.getUrl(myUrl)
+    var abc = document.getElementById('abc')
+    abc.className = 'spanred'
   }
   hotClick = (e) => {
     this.setState({
-      show: 'hot'
+      show: 'hot',
+      type: 1
     })
     var h3Arr = document.querySelectorAll('.film_header h3 span')
     h3Arr.forEach(function (item, index) {
       item.className = ''
     })
     e.target.className = 'spanred'
-    let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=1&type=1'
+    let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=' + this.state.sortType + '&type=1'
     this.getUrl(myUrl)
   }
   willClick = (e) => {
     this.setState({
-      show: 'will'
+      show: 'will',
+      type: 2
     })
     var h3Arr = document.querySelectorAll('.film_header h3 span')
     h3Arr.forEach(function (item, index) {
       item.className = ''
     })
     e.target.className = 'spanred'
-    let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=1&type=2'
+    let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=' + this.state.sortType + '&type=2'
     this.getUrl(myUrl)
+  }
+  pageBtn = (e) => {
+    if (e.target.innerHTML >= 3 && e.target.innerHTML <= 50) {
+      var pageLiA = Number(e.target.innerHTML) - 2
+      document.getElementById('pageLiA').innerHTML = pageLiA
+      var pageLiB = Number(e.target.innerHTML) - 1
+      document.getElementById('pageLiB').innerHTML = pageLiB
+      var pageLiC = Number(e.target.innerHTML)
+      document.getElementById('pageLiC').innerHTML = pageLiC
+      var pageLiD = Number(e.target.innerHTML) + 1
+      document.getElementById('pageLiD').innerHTML = pageLiD
+      var pageLiE = Number(e.target.innerHTML) + 2
+      document.getElementById('pageLiE').innerHTML = pageLiE
+      this.setState({
+        pagenum: Number(e.target.innerHTML)
+      })
+    }
+    document.getElementById('pageLiC').className = 'lired'
+    // e.target.className = 'lired'
+    // console.log(e.target.innerHTML)
+    // if (this.state.show === 'hot') {
+    //   let myUrl = 'api/film?__t=1503715245520&page=' + e.target.innerHTML + '&count=6&sortType=' + this.state.sortType + '&type=1'
+    //   this.getUrl(myUrl)
+    // }
+    // if (this.state.show === 'will') {
+    //   let myUrl2 = 'api/film?__t=1503715245520&page=' + e.target.innerHTML + '&count=6&sortType=' + this.state.sortType + '&type=2'
+    //   this.getUrl(myUrl2)
+    // }
+    let myUrl = 'api/film?__t=1503715245520&page=' + e.target.innerHTML + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
+    this.getUrl(myUrl)
+  }
+  preClick = (e) => {
+    if (this.state.pagenum === 2) {
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiA').className = 'lired'
+    }
+    if (this.state.pagenum === 3) {
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiB').className = 'lired'
+    }
+    if (e.target.innerHTML >= 3 && e.target.innerHTML <= 50) {
+      var pageLiA = Number(this.state.pagenum) - 2
+      document.getElementById('pageLiA').innerHTML = pageLiA
+      var pageLiB = Number(this.state.pagenum) - 1
+      document.getElementById('pageLiB').innerHTML = pageLiB
+      var pageLiC = Number(this.state.pagenum)
+      document.getElementById('pageLiC').innerHTML = pageLiC
+      var pageLiD = Number(this.state.pagenum) + 1
+      document.getElementById('pageLiD').innerHTML = pageLiD
+      var pageLiE = Number(this.state.pagenum) + 2
+      document.getElementById('pageLiE').innerHTML = pageLiE
+    }
+    this.setState({
+      pagenum: this.state.pagenum - 1
+    }, () => {
+      // if (this.state.show === 'hot') {
+      //   let myUrl = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=1'
+      //   this.getUrl(myUrl)
+      //   if (this.state.pagenum <= 0) {
+      //     this.setState({
+      //       pagenum: 1
+      //     })
+      //   }
+      // }
+      // if (this.state.show === 'will') {
+      //   let myUrl2 = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=2'
+      //   this.getUrl(myUrl2)
+      //   if (this.state.pagenum <= 0) {
+      //     this.setState({
+      //       pagenum: 1
+      //     })
+      //   }
+      // }
+      let myUrl = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
+      this.getUrl(myUrl)
+      if (this.state.pagenum <= 0) {
+        this.setState({
+          pagenum: 1
+        })
+      }
+    })
+    console.log(this.state.pagenum)
+  }
+  nextClick = (e) => {
+    if (this.state.pagenum === 1) {
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiB').className = 'lired'
+    }
+    if (this.state.pagenum === 2) {
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiC').className = 'lired'
+    }
+    if (this.state.pagenum >= 3 && this.state.pagenum <= 50) {
+      var pageLiA = Number(this.state.pagenum) - 2
+      document.getElementById('pageLiA').innerHTML = pageLiA
+      var pageLiB = Number(this.state.pagenum) - 1
+      document.getElementById('pageLiB').innerHTML = pageLiB
+      var pageLiC = Number(this.state.pagenum)
+      document.getElementById('pageLiC').innerHTML = pageLiC
+      var pageLiD = Number(this.state.pagenum) + 1
+      document.getElementById('pageLiD').innerHTML = pageLiD
+      var pageLiE = Number(this.state.pagenum) + 2
+      document.getElementById('pageLiE').innerHTML = pageLiE
+      document.getElementById('pageLiC').className = 'lired'
+    }
+    let myUrl = 'api/film?__t=1503715245520&page=' + (this.state.pagenum + 1) + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
+    fetch(myUrl, {
+      method: 'GET'
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(response => {
+        if (response.data.films.length !== 0) {
+          this.setState({
+            pagenum: this.state.pagenum + 1
+          }, () => {
+            let myUrl1 = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
+            this.getUrl(myUrl1)
+          })
+        }
+      })
+    // if (this.state.show === 'hot') {
+    //   let myUrl = 'api/film?__t=1503715245520&page=' + (this.state.pagenum + 1) + '&count=6&sortType=' + this.state.sortType + '&type=1'
+    //   fetch(myUrl, {
+    //     method: 'GET'
+    //   })
+    //       .then(response => {
+    //         return response.json()
+    //       })
+    //       .then(response => {
+    //         if (response.data.films.length !== 0) {
+    //           this.setState({
+    //             pagenum: this.state.pagenum + 1
+    //           }, () => {
+    //             let myUrl = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=1'
+    //             this.getUrl(myUrl)
+    //           })
+    //         }
+    //       })
+    // }
+    // if (this.state.show === 'will') {
+    //   let myUrl = 'api/film?__t=1503715245520&page=' + (this.state.pagenum + 1) + '&count=6&sortType=' + this.state.sortType + '&type=2'
+    //   fetch(myUrl, {
+    //     method: 'GET'
+    //   })
+    //       .then(response => {
+    //         return response.json()
+    //       })
+    //       .then(response => {
+    //         if (response.data.films.length !== 0) {
+    //           this.setState({
+    //             pagenum: this.state.pagenum + 1
+    //           }, () => {
+    //             let myUrl = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=2'
+    //             this.getUrl(myUrl)
+    //           })
+    //         }
+    //       })
+    // }
+    console.log(this.state.pagenum)
+  }
+  FilmHot = (e) => {
+    this.setState({
+      sortType: 1
+    }, () => {
+      let myUrl1 = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
+      this.getUrl(myUrl1)
+    })
+    var liArr = document.querySelectorAll('.film_order ul li')
+    liArr.forEach(function (item, index) {
+      item.className = ''
+    })
+    e.target.className = 'orderLiRed'
+  }
+  ReleaseDate = (e) => {
+    this.setState({
+      sortType: 2
+    }, () => {
+      let myUrl2 = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
+      this.getUrl(myUrl2)
+    })
+    var liArr = document.querySelectorAll('.film_order ul li')
+    liArr.forEach(function (item, index) {
+      item.className = ''
+    })
+    e.target.className = 'orderLiRed'
+  }
+  FilmGrade = (e) => {
+    this.setState({
+      sortType: 3
+    }, () => {
+      let myUrl3 = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=1'
+      this.getUrl(myUrl3)
+    })
+    var liArr = document.querySelectorAll('.film_order ul li')
+    liArr.forEach(function (item, index) {
+      item.className = ''
+    })
+    e.target.className = 'orderLiRed'
   }
   render () {
     const dataArr = this.state.data.map(function (item, index) {
       return (
         <li key={index.toString()} className='film_li'>
-          <div className='film_img'>
-            <img src={item.poster.origin} />
-          </div>
+          <a href={'twopageFilm.html?id=' + item.id}>
+            <div className='film_img'>
+              <img src={item.poster.origin} />
+            </div>
+          </a>
           <div className='film_text'>
             <h4>{item.name}</h4>
             <p>{item.grade}</p>
@@ -105,9 +327,11 @@ class Film extends Component {
               <span>{item.runtime}分钟</span>
             </div>
           </div>
-          <button className='film_btn'>
-            影片详情
-          </button>
+          <a href={'twopageFilm.html?id=' + item.id}>
+            <button className='film_btn'>
+              影片详情
+            </button>
+          </a>
         </li>
       //  <p key={index.toString()}>{item['name']}</p>
       )
@@ -118,15 +342,15 @@ class Film extends Component {
         <div className='film_left'>
           <div className='film_header'>
             <h3>
-              <span onClick={this.hotClick}>正在热映</span>
+              <span id='abc' onClick={this.hotClick}>正在热映</span>
               /
               <span onClick={this.willClick}>即将上映</span>
             </h3>
             <div className='film_order'>
               <ul>
-                <li>热映场次</li>
-                <li>上映日期</li>
-                <li>评分↓</li>
+                <li onClick={this.FilmHot}>热映场次</li>
+                <li onClick={this.ReleaseDate}>上映日期</li>
+                <li onClick={this.FilmGrade}>评分↓</li>
               </ul>
             </div>
           </div>
@@ -136,17 +360,21 @@ class Film extends Component {
             </ul>
           </div>
           <div className='film_page'>
-            <i className='film_page_pre'>上一页</i>
+            <i className='film_page_pre' onClick={this.preClick}>上一页</i>
             <div>
               <ul>
-                <li>1</li>
+                <li id='pageLiA' onClick={this.pageBtn}>1</li>
+                <li id='pageLiB' onClick={this.pageBtn}>2</li>
+                <li id='pageLiC' onClick={this.pageBtn}>3</li>
+                <li id='pageLiD' onClick={this.pageBtn}>4</li>
+                <li id='pageLiE' onClick={this.pageBtn}>5</li>
               </ul>
             </div>
-            <i className='film_page_next'>下一页</i>
+            <i className='film_page_next' onClick={this.nextClick}>下一页</i>
           </div>
         </div>
         <div className='film_right'>
-          热门活动
+          <FilmHotActive />
         </div>
       </div>
     )

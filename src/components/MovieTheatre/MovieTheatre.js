@@ -98,7 +98,7 @@ class MovieTheatre extends Component {
     var arr = []
     for (let i = 0; i < this.state.data.length; i++) {
       arr.push(
-        <div className="movie-theatre-slideshow" onClick={this.props.onclick} name="">
+        <div className="movie-theatre-slideshow">
           <img src={this.state.data[i].poster.thumbnail} alt="" />
         </div>
       )
