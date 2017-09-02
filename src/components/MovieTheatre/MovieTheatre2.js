@@ -5,6 +5,9 @@ import React, {Component} from 'react'
 import '../../assets/styles/movie-theatre2.styl'
 
 class MovieTheatreTwo extends Component {
+  static propTypes = {
+    filename: React.PropTypes.string
+  }
   render() {
     return (
       <div>
@@ -25,7 +28,7 @@ class MovieTheatreTwo extends Component {
                   <div id="movie-theatre-show-score">评分</div>
                   <div id="movie-theatre-show-alias">
                                   [
-                                  <span>别名</span>
+                                  <span filename={this.props.filename}>别名</span>
                                   ]
                 </div>
                 </p>
