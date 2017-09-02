@@ -8,12 +8,23 @@ import Footer from '../../components/Footer/Footer'
 import MovitTheatreTwo from '../../components/MovieTheatre/MovieTheatre2'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      filename: ''
+    }
+  }
+  filmClick = (e) => {
+    this.setState({
+      filename: e.target.innerHTML
+    })
+  }
   render() {
     return (
       <div>
         <Nav />
         <MovieTheatre />
-        <MovitTheatreTwo />
+        <MovitTheatreTwo status={this.filmClick} inner={this.state.filename} />
         <Footer />
       </div>
     )

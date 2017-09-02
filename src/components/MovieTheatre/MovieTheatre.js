@@ -10,11 +10,13 @@ class MovieTheatre extends Component {
     this.state = {
       num: 0,
       left: 0,
-      data: []
+      data: [],
+      mydata: []
     }
   }
   static propTypes = {
-    status: React.PropTypes.func
+    status: React.PropTypes.func,
+    inner: React.PropTypes.string
   }
   click = () => {
     const obtn1 = document.getElementById('movie-theatre-data1')
@@ -82,7 +84,7 @@ class MovieTheatre extends Component {
       }, 1)
     }
   }
-  componentDidMount () {
+  getUrl = (url) => {
     fetch('api/cinema/4698/film?__t=1504138258102', {
       method: 'GET'
     })
@@ -95,11 +97,28 @@ class MovieTheatre extends Component {
           })
         })
   }
+  componentDidMount () {
+    let url = 'api/cinema/4698/film?__t=1504138258102'
+    this.getUrl(url)
+    // let myurl = 'api/cinema/' + location.search.match(/\d+/g)[0] + '?__t=1504333652173'
+    
+    // fetch('api/cinema/4698/film?__t=1504138258102', {
+    //   method: 'GET'
+    // })
+    //     .then(response => {
+    //       return response.json()
+    //     })
+    //     .then(response => {
+    //       this.setState({
+    //         data: response.data.films
+    //       })
+    //     })
+  }
   render() {
     var arr = []
     for (let i = 0; i < this.state.data.length; i++) {
       arr.push(
-        <div className="movie-theatre-slideshow" onClick={this.props.status}>
+        <div className="movie-theatre-slideshow">
           <img src={this.state.data[i].poster.thumbnail} alt="" />
         </div>
       )
@@ -111,6 +130,7 @@ class MovieTheatre extends Component {
           <div id="movie-theatre-content">
             <h2>电影院</h2>
             <div className="movie-theatre-phone">电话:<span>111</span></div>
+            <div onClick={this.props.status}>{this.props.inner}这是什么电影?</div>
           </div>
         </div>
         <div id="movie-theatre-ticket">
