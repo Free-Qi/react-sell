@@ -17,7 +17,8 @@ class TwopageFilmCinema extends Component {
       name: '',
       address: '',
       cinemaid: 0,
-      mydata: []
+      mydata: [],
+      myinner: '全部'
     }
   }
   static propTypes = {
@@ -88,6 +89,9 @@ class TwopageFilmCinema extends Component {
       item.className = 'needspan'
     })
     e.target.className = 'needblue'
+    this.setState({
+      myinner: e.target.innerHTML
+    })
   }
   cinemaclick = (e) => {
     var divArr = document.querySelectorAll('#page2cinema #cinema-right div')
@@ -106,9 +110,16 @@ class TwopageFilmCinema extends Component {
   }
   render() {
     var cinemaArr = this.state.data.map((item, index) => {
-      return (
-        <div className="cinemaArr needspan" onClick={this.cinemaclick} id={item.telephones} name={item.name} title={item.address} key={index.toString()} target={item.id}>{item.name}</div>
-      )
+      if (this.state.myinner === '全部') {
+        return (
+          <div className="cinemaArr needspan" onClick={this.cinemaclick} id={item.telephones} name={item.name} title={item.address} key={index.toString()} target={item.id}>{item.name}</div>
+        )
+      }
+      if (item.district.name === this.state.myinner) {
+        return (
+          <div className="cinemaArr needspan" onClick={this.cinemaclick} id={item.telephones} name={item.name} title={item.address} key={index.toString()} target={item.id}>{item.name}</div>
+        )
+      }
     })
     var oneArr = this.state.mydata.map((item, index) => {
       var beginhours = new Date(item.showAt).getHours()
@@ -131,7 +142,7 @@ class TwopageFilmCinema extends Component {
           <li className="field-one-text">预计{endhours + ':' + endmin}散场</li>
           <li className="field-one-text">{item.film.language + '/' + item.imagery}</li>
           <li className="field-one-text">{item.hall.name}</li>
-          <li className="field-one-text">你给我数据啊?</li>
+          <li className="field-one-text">不会画图?</li>
           <li className="field-one-ori">{item.price.maizuo}</li>
           <button className="field-one-btn">选座购票</button>
         </ul>
