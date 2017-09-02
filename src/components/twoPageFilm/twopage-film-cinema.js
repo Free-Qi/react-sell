@@ -15,8 +15,24 @@ class TwopageFilmCinema extends Component {
       myarr: [],
       tel: '',
       name: '',
-      address: ''
+      address: '',
+      cinemaid: 0,
+      mydata: []
     }
+  }
+  static propTypes = {
+    filmid: React.PropTypes.string
+  }
+  getschedules = (myUrl) => {
+    axios.defaults.withCredentials = true
+    axios(myUrl, {
+      method: 'GET'
+    })
+      .then(response => {
+        this.setState({
+          mydata: response.data.data.schedules
+        })
+      })
   }
   getUrl = (myUrl) => {
     axios.defaults.withCredentials = true
@@ -30,7 +46,8 @@ class TwopageFilmCinema extends Component {
         temorow: new Date(new Date().getTime() + 86400000).toLocaleDateString(),
         tel: response.data.data.cinemas[0].telephones,
         name: response.data.data.cinemas[0].name,
-        address: response.data.data.cinemas[0].address
+        address: response.data.data.cinemas[0].address,
+        cinemaid: response.data.data.cinemas[0].id
       }, () => {
         this.removeS(this.state.data)
       })
@@ -39,6 +56,8 @@ class TwopageFilmCinema extends Component {
   componentWillReceiveProps(nextProps) {
     let myUrl = '/api/cinema?__t=1504142111294'
     this.getUrl(myUrl)
+    let schedulesUrl = '/api/schedule?__t=1504252995666&cinema=' + this.state.cinemaid + '&film=' + nextProps.filmid + '&date='
+    this.getschedules(schedulesUrl)
   }
   removeS = (arr) => {
     var emptyArr = [arr[0].district.name]
@@ -79,13 +98,43 @@ class TwopageFilmCinema extends Component {
     this.setState({
       tel: e.target.getAttribute('id'),
       name: e.target.getAttribute('name'),
-      address: e.target.getAttribute('title')
+      address: e.target.getAttribute('title'),
+      cinemaid: e.target.getAttribute('target')
     })
+    let schedulesUrl = '/api/schedule?__t=1504252995666&cinema=' + this.state.cinemaid + '&film=' + this.props.filmid + '&date='
+    this.getschedules(schedulesUrl)
   }
   render() {
     var cinemaArr = this.state.data.map((item, index) => {
       return (
-        <div className="cinemaArr needspan" onClick={this.cinemaclick} id={item.telephones} name={item.name} title={item.address} key={index.toString()}>{item.name}</div>
+        <div className="cinemaArr needspan" onClick={this.cinemaclick} id={item.telephones} name={item.name} title={item.address} key={index.toString()} target={item.id}>{item.name}</div>
+      )
+    })
+    var oneArr = this.state.mydata.map((item, index) => {
+      var beginhours = new Date(item.showAt).getHours()
+      var beginmin = null
+      if (new Date(item.showAt).getMinutes() < 10) {
+        beginmin = '0' + new Date(item.showAt).getMinutes()
+      } else {
+        beginmin = new Date(item.showAt).getMinutes()
+      }
+      var endhours = new Date(item.endAt).getHours()
+      var endmin = 0
+      if (endmin < 10) {
+        endmin = '0' + new Date(item.endAt).getMinutes()
+      } else {
+        endmin = new Date(item.endAt).getMinutes()
+      }
+      return (
+        <ul className="field-one" key={index.toString()}>
+          <li className="begintime">{beginhours + ':' + beginmin}</li>
+          <li className="field-one-text">预计{endhours + ':' + endmin}散场</li>
+          <li className="field-one-text">{item.film.language + '/' + item.imagery}</li>
+          <li className="field-one-text">{item.hall.name}</li>
+          <li className="field-one-text">你给我数据啊?</li>
+          <li className="field-one-ori">{item.price.maizuo}</li>
+          <button className="field-one-btn">选座购票</button>
+        </ul>
       )
     })
     return (
@@ -119,6 +168,17 @@ class TwopageFilmCinema extends Component {
           <span className="cinema-name">{this.state.name}</span>
           <span className="needspan">{this.state.tel}</span>
           <span className="needspan">{this.state.address}</span>
+        </div>
+        <div id="field">
+          <ul className="field-one">
+            <li className="field-title-li">放映时间</li>
+            <li className="field-title-li">散场时间</li>
+            <li className="field-title-li">语言/版本</li>
+            <li className="field-title-li">放映厅</li>
+            <li className="field-title-li">座位情况</li>
+            <li className="field-title-li">票价</li>
+          </ul>
+          {oneArr}
         </div>
       </div>
     )
