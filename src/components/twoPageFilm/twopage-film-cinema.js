@@ -32,7 +32,6 @@ class TwopageFilmCinema extends Component {
         this.setState({
           mydata: response.data.data.schedules
         })
-        console.log(response.data.data.schedules)
       })
   }
   getUrl = (myUrl) => {
