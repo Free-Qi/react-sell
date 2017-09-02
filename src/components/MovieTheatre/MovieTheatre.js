@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react'
 import '../../assets/styles/movie-theatre.styl'
+import axios from 'axios'
 
 class MovieTheatre extends Component {
   constructor(props) {
@@ -11,12 +12,19 @@ class MovieTheatre extends Component {
       num: 0,
       left: 0,
       data: [],
-      mydata: []
+      address: '',
+      logoUrl: '',
+      name: '',
+      telephones: '',
+      filmid: '',
+      filmsrc: '',
+      filmname: '',
+      grade: '',
+      intro: '',
+      director: '',
+      actors: [],
+      category: ''
     }
-  }
-  static propTypes = {
-    status: React.PropTypes.func,
-    inner: React.PropTypes.string
   }
   click = () => {
     const obtn1 = document.getElementById('movie-theatre-data1')
@@ -36,29 +44,74 @@ class MovieTheatre extends Component {
     obtn2.style.backgroundColor = 'red'
     obtn2.style.color = 'white'
   }
-  LeftChick = () => {
-    clearInterval(this.timer)
-    if (this.state.left > -700) {
-      this.timer = setInterval(() => {
-        this.setState({
-          left: this.state.left - 10
-        }, () => {
-          if (this.state.left <= -700) {
-            clearInterval(this.timer)
-          }
+  getmyUrl = (myurl) => {
+    fetch(myurl, {
+      method: 'GET'
+    })
+        .then(response => {
+          return response.json()
         })
-      }, 1)
-    } else {
-      this.timer = setInterval(() => {
-        this.setState({
-          left: this.state.left + 10
-        }, () => {
-          if (this.state.left >= 0) {
-            clearInterval(this.timer)
-          }
+        .then(response => {
+          this.setState({
+            logoUrl: response.data.cinema.logoUrl,
+            name: response.data.cinema.name,
+            telephones: response.data.cinema.telephones,
+            address: response.data.cinema.address
+          })
         })
-      }, 1)
-    }
+  }
+  getUrl = (url) => {
+    fetch(url, {
+      method: 'GET'
+    })
+        .then(response => {
+          return response.json()
+        })
+        .then(response => {
+          this.setState({
+            data: response.data.films,
+            filmid: response.data.films[0].id,
+            filmsrc: response.data.films[0].poster.thumbnail,
+            filmname: response.data.films[0].name,
+            grade: response.data.films[0].grade,
+            intro: response.data.films[0].intro,
+            director: response.data.films[0].director,
+            actors: response.data.films[0].actors[0].name,
+            category: response.data.films[0].category
+          })
+        })
+  }
+  getUrltime = (urltime) => {
+    axios.defaults.withCredentials = true
+    axios(urltime, {
+      method: 'GET'
+    })
+        .then(response => {
+          return response.json()
+        })
+        .then(response => {
+          console.log(response)
+          // this.setState({
+          //   logoUrl: response.data.cinema.logoUrl,
+          //   name: response.data.cinema.name,
+          //   telephones: response.data.cinema.telephones,
+          //   address: response.data.cinema.address
+          // })
+        })
+  }
+  filmClick = (e) => {
+    this.setState({
+      filmsrc: e.target.src,
+      filmname: e.target.getAttribute('title'),
+      grade: e.target.getAttribute('name'),
+      intro: e.target.getAttribute('id'),
+      director: e.target.getAttribute('value'),
+      actors: e.target.getAttribute('key'),
+      category: e.target.getAttribute('icon'),
+      filmid: e.target.getAttribute('target')
+    })
+    let urltime = 'api/schedule?__t=1504342288879&cinema=' + location.search.match(/\d+/g)[0] + '&film=' + this.state.filmid + '&date='
+    this.getUrltime(urltime)
   }
   RightChick = () => {
     clearInterval(this.timer)
@@ -84,53 +137,57 @@ class MovieTheatre extends Component {
       }, 1)
     }
   }
-  getUrl = (url) => {
-    fetch('api/cinema/4698/film?__t=1504138258102', {
-      method: 'GET'
-    })
-        .then(response => {
-          return response.json()
+  LeftChick = () => {
+    clearInterval(this.timer)
+    if (this.state.left > -700) {
+      this.timer = setInterval(() => {
+        this.setState({
+          left: this.state.left - 10
+        }, () => {
+          if (this.state.left <= -700) {
+            clearInterval(this.timer)
+          }
         })
-        .then(response => {
-          this.setState({
-            data: response.data.films
-          })
+      }, 1)
+    } else {
+      this.timer = setInterval(() => {
+        this.setState({
+          left: this.state.left + 10
+        }, () => {
+          if (this.state.left >= 0) {
+            clearInterval(this.timer)
+          }
         })
+      }, 1)
+    }
   }
   componentDidMount () {
-    let url = 'api/cinema/4698/film?__t=1504138258102'
+    let myurl = 'api/cinema/' + location.search.match(/\d+/g)[0] + '?__t=1504333652173'
+    this.getmyUrl(myurl)
+    let url = 'api/cinema/' + location.search.match(/\d+/g)[0] + '/film?__t=1504335994065'
     this.getUrl(url)
-    // let myurl = 'api/cinema/' + location.search.match(/\d+/g)[0] + '?__t=1504333652173'
-    
-    // fetch('api/cinema/4698/film?__t=1504138258102', {
-    //   method: 'GET'
-    // })
-    //     .then(response => {
-    //       return response.json()
-    //     })
-    //     .then(response => {
-    //       this.setState({
-    //         data: response.data.films
-    //       })
-    //     })
+    let urltime = 'api/schedule?__t=1504342288879&cinema=' + location.search.match(/\d+/g)[0] + '&film=' + this.state.filmid + '&date='
+    this.getUrltime(urltime)
   }
   render() {
-    var arr = []
-    for (let i = 0; i < this.state.data.length; i++) {
-      arr.push(
-        <div className="movie-theatre-slideshow">
-          <img src={this.state.data[i].poster.thumbnail} alt="" />
+    var arr = this.state.data.map((item, index) => {
+      return (
+        <div className="movie-theatre-slideshow" key={index.toString()} >
+          <img src={item.poster.thumbnail} alt="" onClick={this.filmClick} title={item.name} name={item.grade}
+            id={item.intro} value={item.director} key={item.actors} icon={item.category} target={item.id} />
         </div>
       )
-    }
+    })
     return (
       <div>
         <div id="movie-theatre-nav">
-          <div id="movie-theatre-img">1</div>
+          <div id="movie-theatre-img">
+            <img src={this.state.logoUrl} alt="" />
+          </div>
           <div id="movie-theatre-content">
-            <h2>电影院</h2>
-            <div className="movie-theatre-phone">电话:<span>111</span></div>
-            <div onClick={this.props.status}>{this.props.inner}这是什么电影?</div>
+            <h2>{this.state.name}</h2>
+            <div className="movie-theatre-phone">电话:<span>{this.state.telephones}</span></div>
+            <div id="movie-theatre-address">地址:<span>{this.state.address}</span></div>
           </div>
         </div>
         <div id="movie-theatre-ticket">
@@ -151,6 +208,46 @@ class MovieTheatre extends Component {
             <div id="movie-theatre-page-right" onClick={this.RightChick}><img src={require('../../assets/images/MovieTheatre/right.png')} alt="" /></div>
           </div>
           <p className="movie-theatre-line">&nbsp;</p>
+        </div>
+        <div id="movie-theatre-introduce">
+          <div id="movie-theatre-data">
+            <p>日期:</p>
+            <div id="movie-theatre-data1" onClick={this.click}>星期一</div>
+            <div id="movie-theatre-data2" onClick={this.clicks}>星期二</div>
+          </div>
+          <div id="movie-theatre-copy">
+            <div id="movie-theatre-big">
+              <div id="movie-theatre-picture">
+                <img src={this.state.filmsrc} alt="" />
+              </div>
+              <div id="movie-theatre-show">
+                <p id="movie-theatre-show-title">
+                  <div id="movie-theatre-show-name">{this.state.filmname}</div>
+                  <div id="movie-theatre-show-score">{this.state.grade}</div>
+                  <div id="movie-theatre-show-alias">
+                    [
+                    <span>{this.state.intro}</span>
+                    ]
+                  </div>
+                </p>
+                <p className="movie-theatre-line1">&nbsp;</p>
+                <ul>
+                  <li>放映时间</li>
+                  <li>散场时间</li>
+                  <li>语言/版本</li>
+                  <li>放映厅</li>
+                  <li>作为情况</li>
+                  <li>票价</li>
+                </ul>
+                <p className="movie-theatre-line1">&nbsp;</p>
+              </div>
+              <div id="movie-theatre-actor">
+                <p>导演:{this.state.director}</p>
+                <p>主演:{this.state.actors}</p>
+                <p>类型:{this.state.category}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )
