@@ -18,7 +18,7 @@ class TwopageFilmCinema extends Component {
       address: '',
       cinemaid: 0,
       mydata: [],
-      myinner: '全部'
+      myinner: '全部:'
     }
   }
   static propTypes = {
@@ -110,7 +110,7 @@ class TwopageFilmCinema extends Component {
   }
   render() {
     var cinemaArr = this.state.data.map((item, index) => {
-      if (this.state.myinner === '全部') {
+      if (this.state.myinner === '全部:') {
         return (
           <div className="cinemaArr needspan" onClick={this.cinemaclick} id={item.telephones} name={item.name} title={item.address} key={index.toString()} target={item.id}>{item.name}</div>
         )
