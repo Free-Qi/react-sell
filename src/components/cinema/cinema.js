@@ -59,7 +59,7 @@ class CinemaAll extends Component {
     })
   }
   gologin = () => {
-    location.href = 'login.html'
+    location.href = 'MovieTheatre.html'
   }
   render() {
     var cinemaOneArr = this.state.data.map((item, index) => {
@@ -84,7 +84,9 @@ class CinemaAll extends Component {
                 </li>
               </ul>
             </div>
-            <button className="item-one-btn" onClick={this.gologin}>影院详情</button>
+            <a href={'MovieTheatre.html?id=' + item.id}>
+              <button className="item-one-btn" onClick={this.gologin}>影院详情</button>
+            </a>
           </div>
         )
       }
