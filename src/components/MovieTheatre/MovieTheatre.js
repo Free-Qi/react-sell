@@ -23,7 +23,9 @@ class MovieTheatre extends Component {
       intro: '',
       director: '',
       actors: [],
-      category: ''
+      category: '',
+      filmdata: [],
+      week: ''
     }
   }
   click = () => {
@@ -78,24 +80,22 @@ class MovieTheatre extends Component {
             director: response.data.films[0].director,
             actors: response.data.films[0].actors.name,
             category: response.data.films[0].category
+          }, () => {
+            let urltime = 'api/schedule?__t=1504342288879&cinema=' + location.search.match(/\d+/g)[0] + '&film=' + this.state.filmid + '&date='
+            this.getUrltime(urltime)
           })
         })
   }
   getUrltime = (urltime) => {
+    console.log(urltime)
     axios.defaults.withCredentials = true
     axios(urltime, {
       method: 'GET'
     })
         .then(response => {
-          return response.json()
-        })
-        .then(response => {
-          // this.setState({
-          //   logoUrl: response.data.cinema.logoUrl,
-          //   name: response.data.cinema.name,
-          //   telephones: response.data.cinema.telephones,
-          //   address: response.data.cinema.address
-          // })
+          this.setState({
+            filmdata: response.data.data.schedules
+          })
         })
   }
   filmClick = (e) => {
@@ -108,9 +108,10 @@ class MovieTheatre extends Component {
       actors: e.target.getAttribute('key'),
       category: e.target.getAttribute('icon'),
       filmid: e.target.getAttribute('target')
+    }, () => {
+      let urltime = 'api/schedule?__t=1504342288879&cinema=' + location.search.match(/\d+/g)[0] + '&film=' + this.state.filmid + '&date='
+      this.getUrltime(urltime)
     })
-    let urltime = 'api/schedule?__t=1504342288879&cinema=' + location.search.match(/\d+/g)[0] + '&film=' + this.state.filmid + '&date='
-    this.getUrltime(urltime)
   }
   RightChick = () => {
     clearInterval(this.timer)
@@ -165,15 +166,58 @@ class MovieTheatre extends Component {
     this.getmyUrl(myurl)
     let url = 'api/cinema/' + location.search.match(/\d+/g)[0] + '/film?__t=1504335994065'
     this.getUrl(url)
-    let urltime = 'api/schedule?__t=1504342288879&cinema=' + location.search.match(/\d+/g)[0] + '&film=' + this.state.filmid + '&date='
-    this.getUrltime(urltime)
   }
   render() {
+    const newData = new Date()
+    switch (newData.getDay()) {
+      case 0:this.state.week = '星期天'
+        break
+      case 1:this.state.week = '星期一'
+        break
+      case 2:this.state.week = '星期二'
+        break
+      case 3:this.state.week = '星期三'
+        break
+      case 4:this.state.week = '星期四'
+        break
+      case 5:this.state.week = '星期五'
+        break
+      case 6:this.state.week = '星期六'
+        break
+    }
     var arr = this.state.data.map((item, index) => {
       return (
         <div className="movie-theatre-slideshow" key={index.toString()} >
           <img src={item.poster.thumbnail} alt="" onClick={this.filmClick} title={item.name} name={item.grade}
             id={item.intro} value={item.director} key={item.actors} icon={item.category} target={item.id} />
+        </div>
+      )
+    })
+    var filmArr = this.state.filmdata.map((item, index) => {
+      const newDatashow = new Date(item.showAt)
+      const hoursshow = newDatashow.getHours()
+      const minshow = newDatashow.getMinutes()
+      const newDataend = new Date(item.endAt)
+      const hoursend = newDataend.getHours()
+      const minend = newDataend.getMinutes()
+      const video = item.hall.name.substring(0, 2)
+      return (
+        <div className="movie-theatre-films" key={index.toString()}>
+          <span className="movie-theatre-films-show">{hoursshow + ':' + minshow}</span>
+          <span className="movie-theatre-films-intro">预计{hoursend + ':' + minend}散场</span>
+          <span className="movie-theatre-films-intro">
+            {item.film.language}/
+            {item.imagery}
+          </span>
+          <span className="movie-theatre-films-intro">
+            {video}
+          </span>
+          <img src={require('../../assets/images/MovieTheatre/glass.png')} alt=""
+            className="movie-theatre-films-seat" />
+          <span className="movie-theatre-films-intro">
+            {item.price.maizuo}
+          </span>
+          <button type="button" className="movie-theatre-button">选座购票</button>
         </div>
       )
     })
@@ -211,13 +255,17 @@ class MovieTheatre extends Component {
         <div id="movie-theatre-introduce">
           <div id="movie-theatre-data">
             <p>日期:</p>
-            <div id="movie-theatre-data1" onClick={this.click}>星期一</div>
-            <div id="movie-theatre-data2" onClick={this.clicks}>星期二</div>
+            <div id="movie-theatre-data1" onClick={this.click}>{this.state.week}</div>
           </div>
           <div id="movie-theatre-copy">
             <div id="movie-theatre-big">
               <div id="movie-theatre-picture">
                 <img src={this.state.filmsrc} alt="" />
+                <div id="movie-theatre-actor">
+                  <p>导演:{this.state.director}</p>
+                  <p>主演:{this.state.actors}</p>
+                  <p>类型:{this.state.category}</p>
+                </div>
               </div>
               <div id="movie-theatre-show">
                 <p id="movie-theatre-show-title">
@@ -235,15 +283,11 @@ class MovieTheatre extends Component {
                   <li>散场时间</li>
                   <li>语言/版本</li>
                   <li>放映厅</li>
-                  <li>作为情况</li>
+                  <li>座位情况</li>
                   <li>票价</li>
+                  <li>购票</li>
                 </ul>
-                <p className="movie-theatre-line1">&nbsp;</p>
-              </div>
-              <div id="movie-theatre-actor">
-                <p>导演:{this.state.director}</p>
-                <p>主演:{this.state.actors}</p>
-                <p>类型:{this.state.category}</p>
+                <p className="movie-theatre-line1">{filmArr}</p>
               </div>
             </div>
           </div>
