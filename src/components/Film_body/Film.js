@@ -75,7 +75,19 @@ class Film extends Component {
   hotClick = (e) => {
     this.setState({
       show: 'hot',
-      type: 1
+      type: 1,
+      pagenum: 1
+    }, () => {
+      document.getElementById('pageLiA').innerHTML = '1'
+      document.getElementById('pageLiB').innerHTML = '2'
+      document.getElementById('pageLiC').innerHTML = '3'
+      document.getElementById('pageLiD').innerHTML = '4'
+      document.getElementById('pageLiE').innerHTML = '5'
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiA').className = 'lired'
     })
     var h3Arr = document.querySelectorAll('.film_header h3 span')
     h3Arr.forEach(function (item, index) {
@@ -88,7 +100,19 @@ class Film extends Component {
   willClick = (e) => {
     this.setState({
       show: 'will',
-      type: 2
+      type: 2,
+      pagenum: 1
+    }, () => {
+      document.getElementById('pageLiA').innerHTML = '1'
+      document.getElementById('pageLiB').innerHTML = '2'
+      document.getElementById('pageLiC').innerHTML = '3'
+      document.getElementById('pageLiD').innerHTML = '4'
+      document.getElementById('pageLiE').innerHTML = '5'
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiA').className = 'lired'
     })
     var h3Arr = document.querySelectorAll('.film_header h3 span')
     h3Arr.forEach(function (item, index) {
@@ -97,6 +121,7 @@ class Film extends Component {
     e.target.className = 'spanred'
     let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=' + this.state.sortType + '&type=2'
     this.getUrl(myUrl)
+    this.getUrl2(myUrl)
   }
   pageBtn = (e) => {
     this.setState({
@@ -435,10 +460,21 @@ class Film extends Component {
   }
   FilmHot = (e) => {
     this.setState({
-      sortType: 1
+      sortType: 1,
+      pagenum: 1
     }, () => {
-      let myUrl1 = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
+      let myUrl1 = 'api/film?__t=1503715245520&page=1&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
       this.getUrl(myUrl1)
+      document.getElementById('pageLiA').innerHTML = '1'
+      document.getElementById('pageLiB').innerHTML = '2'
+      document.getElementById('pageLiC').innerHTML = '3'
+      document.getElementById('pageLiD').innerHTML = '4'
+      document.getElementById('pageLiE').innerHTML = '5'
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiA').className = 'lired'
     })
     var liArr = document.querySelectorAll('.film_order ul li')
     liArr.forEach(function (item, index) {
@@ -448,10 +484,21 @@ class Film extends Component {
   }
   ReleaseDate = (e) => {
     this.setState({
-      sortType: 2
+      sortType: 2,
+      pagenum: 1
     }, () => {
-      let myUrl2 = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
+      let myUrl2 = 'api/film?__t=1503715245520&page=1&count=6&sortType=' + this.state.sortType + '&type=' + this.state.type
       this.getUrl(myUrl2)
+      document.getElementById('pageLiA').innerHTML = '1'
+      document.getElementById('pageLiB').innerHTML = '2'
+      document.getElementById('pageLiC').innerHTML = '3'
+      document.getElementById('pageLiD').innerHTML = '4'
+      document.getElementById('pageLiE').innerHTML = '5'
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiA').className = 'lired'
     })
     var liArr = document.querySelectorAll('.film_order ul li')
     liArr.forEach(function (item, index) {
@@ -461,10 +508,21 @@ class Film extends Component {
   }
   FilmGrade = (e) => {
     this.setState({
-      sortType: 3
+      sortType: 3,
+      pagenum: 1
     }, () => {
-      let myUrl3 = 'api/film?__t=1503715245520&page=' + this.state.pagenum + '&count=6&sortType=' + this.state.sortType + '&type=1'
+      let myUrl3 = 'api/film?__t=1503715245520&page=1&count=6&sortType=' + this.state.sortType + '&type=1'
       this.getUrl(myUrl3)
+      document.getElementById('pageLiA').innerHTML = '1'
+      document.getElementById('pageLiB').innerHTML = '2'
+      document.getElementById('pageLiC').innerHTML = '3'
+      document.getElementById('pageLiD').innerHTML = '4'
+      document.getElementById('pageLiE').innerHTML = '5'
+      let liArr = document.querySelectorAll('.film_page div ul li')
+      liArr.forEach(function (item, index) {
+        item.className = ''
+      })
+      document.getElementById('pageLiA').className = 'lired'
     })
     var liArr = document.querySelectorAll('.film_order ul li')
     liArr.forEach(function (item, index) {

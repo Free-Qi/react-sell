@@ -5,7 +5,6 @@ import React, {Component} from 'react'
 import Nav from '../../components/web-nav/nav'
 import MovieTheatre from '../../components/MovieTheatre/MovieTheatre'
 import Footer from '../../components/Footer/Footer'
-import MovitTheatreTwo from '../../components/MovieTheatre/MovieTheatre2'
 
 class App extends Component {
   constructor(props) {
@@ -26,6 +25,12 @@ class App extends Component {
     }, () => {
       var cookie = `cityId=${this.state.cityID}; cityName=${encodeURI(this.state.cityName)}; `
       document.cookie = cookie
+      // filename: ''
+    })
+  }
+  filmClick = (e) => {
+    this.setState({
+      filename: e.target.innerHTML
     })
   }
   render() {
@@ -33,7 +38,6 @@ class App extends Component {
       <div>
         <Nav getinner={this.spanclick} inner={this.state.cityInnerhtml} />
         <MovieTheatre />
-        <MovitTheatreTwo />
         <Footer />
       </div>
     )
