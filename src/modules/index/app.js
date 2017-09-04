@@ -13,20 +13,6 @@ class App extends Component {
       cityInnerhtml: '大连'
     }
   }
-  // componentDidMount () {
-  //   fetch('api/billboard/login', {
-  //     method: 'GET'
-  //   })
-  //     .then(response => {
-  //       return response.json()
-  //     })
-  //     .then(response => {
-  //       console.log(response.data)
-  //       this.setState({
-  //         data: response.data.billboards
-  //       })
-  //     })
-  // }
   spanclick = (e) => {
     this.setState({
       cityInnerhtml: e.target.innerHTML
@@ -34,11 +20,6 @@ class App extends Component {
     })
   }
   render () {
-    // const dataArr = this.state.data.map(function (item, index) {
-    //   return (
-    //     <p key={index.toString()}>{item['name']}</p>
-    //   )
-    // })
     return (
       <div>
         <Nav getinner={this.spanclick} inner={this.state.cityInnerhtml} />

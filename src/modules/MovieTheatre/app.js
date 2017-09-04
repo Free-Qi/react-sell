@@ -10,8 +10,23 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      filename: ''
+      cityID: 52,
+      cityName: '大连',
+      cityInnerhtml: '大连'
     }
+    var cookie = `cityId=${this.state.cityID}; cityName=${encodeURI(this.state.cityName)}; `
+    document.cookie = cookie
+  }
+  spanclick = (e) => {
+    this.setState({
+      cityInnerhtml: e.target.innerHTML,
+      cityID: e.target.getAttribute('title'),
+      cityName: e.target.getAttribute('name')
+    }, () => {
+      var cookie = `cityId=${this.state.cityID}; cityName=${encodeURI(this.state.cityName)}; `
+      document.cookie = cookie
+      // filename: ''
+    })
   }
   filmClick = (e) => {
     this.setState({
@@ -21,7 +36,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav getinner={this.spanclick} inner={this.state.cityInnerhtml} />
         <MovieTheatre />
         <Footer />
       </div>

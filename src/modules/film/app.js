@@ -6,37 +6,30 @@ import Film from '../../components/Film_body/Film'
 import Nav from '../../components/web-nav/nav'
 
 class App extends Component {
-  // constructor (props) {
-  //   super(props)
-  //   this.state = {
-  //     data: []
-  //   }
-  // }
-  //
-  // componentDidMount () {
-  //   fetch('api/billboard/home', {
-  //     method: 'GET'
-  //   })
-  //     .then(response => {
-  //       return response.json()
-  //     })
-  //     .then(response => {
-  //       console.log(response.data)
-  //       this.setState({
-  //         data: response.data.billboards
-  //       })
-  //     })
-  // }
-
+  constructor(props) {
+    super(props)
+    this.state = {
+      cityID: 52,
+      cityName: '大连',
+      cityInnerhtml: '大连'
+    }
+    var cookie = `cityId=${this.state.cityID}; cityName=${encodeURI(this.state.cityName)}; `
+    document.cookie = cookie
+  }
+  spanclick = (e) => {
+    this.setState({
+      cityInnerhtml: e.target.innerHTML,
+      cityID: e.target.getAttribute('title'),
+      cityName: e.target.getAttribute('name')
+    }, () => {
+      var cookie = `cityId=${this.state.cityID}; cityName=${encodeURI(this.state.cityName)}; `
+      document.cookie = cookie
+    })
+  }
   render () {
-    // const dataArr = this.state.data.map(function (item, index) {
-    //   return (
-    //     <p key={index.toString()}>{item['name']}</p>
-    //   )
-    // })
     return (
       <div>
-        <Nav />
+        <Nav getinner={this.spanclick} inner={this.state.cityInnerhtml} />
         <Film />
         <Footer />
       </div>
