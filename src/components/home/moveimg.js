@@ -92,10 +92,11 @@ class Moveimg extends Component {
     })
     var obj = {
       left: this.state.left,
-      width: document.documentElement.clientWidth * 5
+      width: document.documentElement.clientWidth * 5,
+      overflow: 'hidden'
     }
     return (
-      <div id="lbt">
+      <div id="lbt" style={{overflow: 'hidden'}}>
         <div id="moveBigimg" style={obj}>
           {moveimgArr}
         </div>
