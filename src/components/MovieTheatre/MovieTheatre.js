@@ -76,7 +76,7 @@ class MovieTheatre extends Component {
             grade: response.data.films[0].grade,
             intro: response.data.films[0].intro,
             director: response.data.films[0].director,
-            actors: response.data.films[0].actors[0].name,
+            actors: response.data.films[0].actors.name,
             category: response.data.films[0].category
           })
         })
@@ -90,7 +90,6 @@ class MovieTheatre extends Component {
           return response.json()
         })
         .then(response => {
-          console.log(response)
           // this.setState({
           //   logoUrl: response.data.cinema.logoUrl,
           //   name: response.data.cinema.name,
