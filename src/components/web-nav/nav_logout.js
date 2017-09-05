@@ -9,7 +9,7 @@ class NavLogout extends Component {
     return (
       <div>
         <a href='logged.html'><div id='nav-login'>{this.props.username}</div></a>
-        <a href='#'> <div id='nav-sign'>退出</div></a>
+        <a href='login.html'> <div id='nav-sign'>退出</div></a>
       </div>
     )
   }

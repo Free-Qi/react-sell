@@ -39,7 +39,7 @@ class MoveimgTwo extends Component {
   render() {
     var moveimgArr2 = this.state.data.map((item, index) => {
       return (
-        <img src={item.imageUrl} alt="" key={index} />
+        <img src={item.imageUrl} alt="" key={index.toString()} />
       )
     })
     return (

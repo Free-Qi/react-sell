@@ -19,13 +19,11 @@ class Nav extends Component {
       data: [],
       status: 1,
       loginType: ''
-      // cityInnerhtml: this.props.cityInnerhtml
     }
   }
   static propTypes = {
     getinner: React.PropTypes.func,
     inner: React.PropTypes.string
-    // getTitle: React.PropTypes.func
   }
   getUrl3 = (myUrl) => {
     fetch(myUrl, {

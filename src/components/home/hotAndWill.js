@@ -17,7 +17,8 @@ class HotAndWill extends Component {
   }
   hotClick = (e) => {
     this.setState({
-      show: 'hot'
+      show: 'hot',
+      typestr: '正在热映'
     })
     var h2Arr = document.querySelectorAll('#hotAndWill #hotAndWill-header #hotAndWill-header-left h2')
     h2Arr.forEach(function (item, index) {
@@ -27,7 +28,8 @@ class HotAndWill extends Component {
   }
   willClick = (e) => {
     this.setState({
-      show: 'will'
+      show: 'will',
+      typestr: '将要播出'
     })
     var h2Arr = document.querySelectorAll('#hotAndWill #hotAndWill-header #hotAndWill-header-left h2')
     h2Arr.forEach(function (item, index) {
@@ -38,16 +40,10 @@ class HotAndWill extends Component {
   render() {
     var filmType = null
     if (this.state.show === 'hot') {
-      filmType = <Hot length={this.length} />
-      this.setState({
-        typestr: '正在热映'
-      })
+      filmType = <Hot />
     }
     if (this.state.show === 'will') {
       filmType = <Will />
-      this.setState({
-        typestr: '将要播出'
-      })
     }
     return (
       <div id="hotAndWill">
