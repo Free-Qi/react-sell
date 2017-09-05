@@ -37,15 +37,6 @@ class MovieTheatre extends Component {
     obtn2.style.backgroundColor = 'white'
     obtn2.style.color = 'black'
   }
-  clicks = () => {
-    const obtn1 = document.getElementById('movie-theatre-data1')
-    obtn1.style.backgroundColor = 'white'
-    obtn1.style.color = 'black'
-
-    const obtn2 = document.getElementById('movie-theatre-data2')
-    obtn2.style.backgroundColor = 'red'
-    obtn2.style.color = 'white'
-  }
   getmyUrl = (myurl) => {
     fetch(myurl, {
       method: 'GET'
@@ -87,7 +78,6 @@ class MovieTheatre extends Component {
         })
   }
   getUrltime = (urltime) => {
-    console.log(urltime)
     axios.defaults.withCredentials = true
     axios(urltime, {
       method: 'GET'
@@ -265,6 +255,7 @@ class MovieTheatre extends Component {
                   <p>导演:{this.state.director}</p>
                   <p>主演:{this.state.actors}</p>
                   <p>类型:{this.state.category}</p>
+                  <a href="logged.html">点击</a>
                 </div>
               </div>
               <div id="movie-theatre-show">
