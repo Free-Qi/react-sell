@@ -85,7 +85,7 @@ class Moveimg extends Component {
   render() {
     var moveimgArr = this.state.data.map((item, index) => {
       return (
-        <div key={index} className="movelbt" style={{width: document.documentElement.clientWidth}}>
+        <div key={index.toString()} className="movelbt" style={{width: document.documentElement.clientWidth}}>
           <img src={item.imageUrl} alt="" />
         </div>
       )

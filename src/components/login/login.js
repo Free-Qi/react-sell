@@ -3,8 +3,6 @@
  */
 import React, {Component} from 'react'
 import '../../assets/styles/App.styl'
-import axios from 'axios'
-const md5 = require('md5')
 class Mlogin extends Component {
   constructor(props) {
     super(props)
@@ -12,8 +10,12 @@ class Mlogin extends Component {
       dis: 'none',
       mathod: 2,
       user: '',
-      pass: ''
+      pass: '',
+      username: ''
     }
+  }
+  static propTypes = {
+    click: React.PropTypes.func
   }
 
   click1 = (e) => {
@@ -38,26 +40,6 @@ class Mlogin extends Component {
       dis: 'none'
     })
   }
-  loginclick = () => {
-    this.setState({
-      user: this.refs.userinp.value,
-      pass: md5(this.refs.passinp.value)
-    }, () => {
-      var ot = new Date().getTime()
-      let sendurl = 'api/login?__t=' + ot
-      axios.defaults.headers.post['Content-Type'] = 'application/json'
-      axios.post(sendurl, JSON.stringify({
-        captchaCode: '',
-        captchaKey: '',
-        loginType: 0,
-        name: this.state.user,
-        password: this.state.pass
-      })).then(function (response) {
-        console.log(response)
-      })
-    })
-  }
-
   render() {
     return (
       <div id='m-login'>
@@ -79,7 +61,7 @@ class Mlogin extends Component {
                 <input type='password' className='input1' placeholder='输入密码' ref='passinp' />
               </div>
             </div>
-            <button id='loginbtn' onClick={this.loginclick}>登录</button>
+            <button id='loginbtn' onClick={this.props.click}>登录</button>
           </div>
         </div>
       </div>

@@ -52,7 +52,7 @@ class Comment extends Component {
         hour = Math.floor(day / 24) + '小时前'
       }
       return (
-        <div className="comment-left-move-one" key={index}>
+        <div className="comment-left-move-one" key={index.toString()}>
           <div className="comment-one-img">
             <img src={item.user.avatorUrl} alt="" />
           </div>

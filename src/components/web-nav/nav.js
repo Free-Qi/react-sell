@@ -6,6 +6,8 @@ import '../../assets/styles/App.styl'
 import '../../assets/styles/nav.styl'
 import img3down from '../../assets/Allimg/otherImg/倒三角灰色.png'
 import img3up from '../../assets/Allimg/otherImg/正黄色三角.png'
+import NavLogin from './nav_login'
+import NavLogout from './nav_logout'
 class Nav extends Component {
   constructor(props) {
     super(props)
@@ -14,14 +16,30 @@ class Nav extends Component {
       sanjiaoapp: 1,
       dis: 'none',
       disapp: 'none',
-      data: []
-      // cityInnerhtml: this.props.cityInnerhtml
+      data: [],
+      status: 1,
+      loginType: ''
     }
   }
   static propTypes = {
     getinner: React.PropTypes.func,
     inner: React.PropTypes.string
-    // getTitle: React.PropTypes.func
+  }
+  getUrl3 = (myUrl) => {
+    fetch(myUrl, {
+      method: 'GET',
+      credentials: 'include'
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(response => {
+        console.log(response)
+        this.setState({
+          status: response.status,
+          loginType: response.data.user.name
+        })
+      })
   }
   componentDidMount() {
     fetch('api/city?__t=1503626376224', {
@@ -35,6 +53,8 @@ class Nav extends Component {
           data: response.data.cities
         })
       })
+    let myUrl2 = 'api/me?__t=' + new Date().getTime()
+    this.getUrl3(myUrl2)
   }
 
   mouseover = () => {
@@ -230,6 +250,13 @@ class Nav extends Component {
     if (this.state.sanjiaoapp === 1) {
       appsanjiao = img3down
     }
+    let mydiv = null
+    if (this.state.status === 0) {
+      mydiv = <NavLogout username={this.state.loginType} />
+    }
+    if (this.state.status !== 0) {
+      mydiv = <NavLogin />
+    }
     return (
       <div id='web-nav'>
         <div className='container'>
@@ -280,8 +307,7 @@ class Nav extends Component {
               </div>
             </div>
             <div id="nav-loginAndsign">
-              <a href="login.html"><div id="nav-login">登录</div></a>
-              <a href="register.html"> <div id="nav-sign">注册</div></a>
+              {mydiv}
             </div>
             <div className="clearboth">.</div>
           </div>

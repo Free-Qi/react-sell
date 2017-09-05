@@ -37,7 +37,7 @@ class Film extends Component {
         return response.json()
       })
       .then(response => {
-        console.log(response.data)
+        // console.log(response.data)
         this.setState({
           data: response.data.films
         })
@@ -57,7 +57,6 @@ class Film extends Component {
         })
       })
   }
-
   componentDidMount() {
    // this.hotClick()
     let myUrl = 'api/film?__t=1503715245520&page=1&count=6&sortType=' + this.state.sortType + '&type=1'
