@@ -15,13 +15,11 @@ class Nav extends Component {
       dis: 'none',
       disapp: 'none',
       data: []
-      // cityInnerhtml: this.props.cityInnerhtml
     }
   }
   static propTypes = {
     getinner: React.PropTypes.func,
     inner: React.PropTypes.string
-    // getTitle: React.PropTypes.func
   }
   componentDidMount() {
     fetch('api/city?__t=1503626376224', {
