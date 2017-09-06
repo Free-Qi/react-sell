@@ -69,7 +69,7 @@ class MovieTheatre extends Component {
             grade: response.data.films[0].grade,
             intro: response.data.films[0].intro,
             director: response.data.films[0].director,
-            actors: response.data.films[0].actors.name,
+            actors: response.data.films[0].actors,
             category: response.data.films[0].category
           }, () => {
             let urltime = 'api/schedule?__t=1504342288879&cinema=' + location.search.match(/\d+/g)[0] + '&film=' + this.state.filmid + '&date='
@@ -89,13 +89,14 @@ class MovieTheatre extends Component {
         })
   }
   filmClick = (e) => {
+    console.log(e.target.getAttribute('name'))
+    console.log(e.target.name)
     this.setState({
       filmsrc: e.target.src,
       filmname: e.target.getAttribute('title'),
       grade: e.target.getAttribute('name'),
       intro: e.target.getAttribute('id'),
       director: e.target.getAttribute('value'),
-      actors: e.target.getAttribute('key'),
       category: e.target.getAttribute('icon'),
       filmid: e.target.getAttribute('target')
     }, () => {
@@ -179,10 +180,15 @@ class MovieTheatre extends Component {
       return (
         <div className="movie-theatre-slideshow" key={index.toString()} >
           <img src={item.poster.thumbnail} alt="" onClick={this.filmClick} title={item.name} name={item.grade}
-            id={item.intro} value={item.director} key={item.actors} icon={item.category} target={item.id} />
+            id={item.intro} value={item.director} icon={item.category} target={item.id} />
         </div>
       )
     })
+    // var itemArr = this.state.actors.map((item, index) => {
+    //   return (
+    //     <span key={index.toString()}>{item.name}</span>
+    //   )
+    // })
     var filmArr = this.state.filmdata.map((item, index) => {
       const newDatashow = new Date(item.showAt)
       const hoursshow = newDatashow.getHours()
@@ -253,9 +259,7 @@ class MovieTheatre extends Component {
                 <img src={this.state.filmsrc} alt="" />
                 <div id="movie-theatre-actor">
                   <p>导演:{this.state.director}</p>
-                  <p>主演:{this.state.actors}</p>
                   <p>类型:{this.state.category}</p>
-                  <a href="logged.html">点击</a>
                 </div>
               </div>
               <div id="movie-theatre-show">

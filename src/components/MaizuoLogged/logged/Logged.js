@@ -4,20 +4,45 @@
 import React, {Component} from 'react'
 import '../../../assets/logged/logged.styl'
 class Logged extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loginType: ''
+    }
+  }
+  getUrl3 = (myUrl) => {
+    fetch(myUrl, {
+      method: 'GET',
+      credentials: 'include'
+    })
+        .then(response => {
+          return response.json()
+        })
+        .then(response => {
+          this.setState({
+            status: response.status,
+            loginType: response.data.user.name
+          })
+        })
+  }
+  componentDidMount () {
+    let myUrl2 = 'api/me?__t=' + new Date().getTime()
+    this.getUrl3(myUrl2)
+  }
   render() {
     return (
       <div id="big">
         <div id="logged-nav">
           <img src={require('../../../assets/images/MovieTheatre/pc.png')} alt="" />
-          <div id="logged-user">用户名:</div>
+          <div id="logged-user">用户名:{this.state.loginType}</div>
           <div id="logged-balance">余额:</div>
           <p id="logged-line">&nbsp;</p>
           <p className="logged-title"><a href="logged.html">我的订单</a></p>
           <p className="logged-title"><a href="maizuocare.html">我的卖座卡</a></p>
           <p className="logged-title"><a href="maizuocash.html">我的现金券</a></p>
-          <p className="logged-title"><a href="">绑定手机</a></p>
-          <p className="logged-title"><a href="">登录密码</a></p>
-          <p className="logged-title"><a href="">安全密码</a></p>
+          <p className="logged-title"><a href="maizuophone.html">绑定手机</a></p>
+          <p className="logged-title"><a href="maizuologin.html">登录密码</a></p>
+          <p className="logged-title"><a href="maizuopass.html">安全密码</a></p>
         </div>
         <div id="logged-content">
           <h2>我的订单</h2>

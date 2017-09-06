@@ -2,23 +2,15 @@
  * Created by dllo on 17/9/5.
  */
 import React, {Component} from 'react'
-import '../../../assets/logged/maizuocash.styl'
-import a from '../../../assets/logged/reduce.png'
-import b from '../../../assets/logged/add.png'
+import '../../../assets/logged/maizuophone.styl'
 
-class MaizuoCash extends Component {
+class MaizuoPhone extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      stauts: 1,
+      securityMobile: '',
       loginType: ''
     }
-  }
-  click = () => {
-    this.setState({
-      stauts: this.state.stauts + 1
-    }, () => {
-    })
   }
   getUrl3 = (myUrl) => {
     fetch(myUrl, {
@@ -30,8 +22,8 @@ class MaizuoCash extends Component {
         })
         .then(response => {
           this.setState({
-            status: response.status,
-            loginType: response.data.user.name
+            loginType: response.data.user.name,
+            securityMobile: response.data.user.setting.securityMobile
           })
         })
   }
@@ -40,18 +32,12 @@ class MaizuoCash extends Component {
     this.getUrl3(myUrl2)
   }
   render() {
-    let myimg = null
-    if (this.state.stauts % 2 === 1) {
-      myimg = <img src={b} alt="" id="maizuocare-img" />
-    } else {
-      myimg = <img src={a} alt="" id="maizuocare-img" />
-    }
     return (
       <div id="big">
         <div id="logged-nav">
           <img src={require('../../../assets/images/MovieTheatre/pc.png')} alt="" />
           <div id="logged-user">用户名:{this.state.loginType}</div>
-          <div id="logged-balance">余额:</div>
+          <div id="logged-balance">余额:0</div>
           <p id="logged-line">&nbsp;</p>
           <p className="logged-title"><a href="logged.html">我的订单</a></p>
           <p className="logged-title"><a href="maizuocare.html">我的卖座卡</a></p>
@@ -61,15 +47,14 @@ class MaizuoCash extends Component {
           <p className="logged-title"><a href="maizuopass.html">安全密码</a></p>
         </div>
         <div id="maizuocare-content">
-          <h2>我的卖座卡</h2>
+          <h2>绑定手机</h2>
           <p id="maizuocare-line">&nbsp;</p>
-          <div id="maizuocare-main-content" onClick={this.click}>
-            {myimg}
-            添加新的卖座卡
+          <div id="maizuophone-content">
+            <img src={require('../../../assets/images/MovieTheatre/phone.png')} alt="" />
           </div>
-          <div id="maizuocash-content">
-            <input type="text" />
-            <button>添加</button>
+          <div id="maizuophone-phone">
+            <p>绑定的手机号:{this.state.securityMobile}</p>
+            <p>如需更改手机号码，请拨打客服电话：400-1808-400</p>
           </div>
         </div>
       </div>
@@ -77,4 +62,4 @@ class MaizuoCash extends Component {
   }
 }
 
-export default MaizuoCash
+export default MaizuoPhone
